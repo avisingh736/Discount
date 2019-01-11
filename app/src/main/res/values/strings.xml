@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Discount</string>
+
+    <string name="email_id">Email Id</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="or">Or</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_with_facebook">Sign in with facebook</string>
+
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+
+    <string name="dont_have_an_account_sign_up">Don\'t have an account?</string>
+    <string name="already_have_an_account_sign_up">Already have an account?</string>
+
+    <string name="add_your_photo">Add your photo</string>
+    <string name="create_your_account">Create your account</string>
+</resources>
