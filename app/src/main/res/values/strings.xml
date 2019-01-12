@@ -19,4 +19,18 @@
 
     <string name="add_your_photo">Add your photo</string>
     <string name="create_your_account">Create your account</string>
+
+
+
+
+
+
+    <!-- Alerts on the app-->
+    <string name="invalid_email_id">Invalid email id</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="login_successful">Login successful</string>
+    <string name="invalid_first_name">Invalid first name</string>
+    <string name="invalid_last_name">Invalid last name</string>
+    <string name="password_not_matching">Password is not matching</string>
+    <string name="profile_image_not_selected">Profile image not selected</string>
 </resources>

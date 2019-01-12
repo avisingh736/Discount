@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#ffe7a7</color>
 
+    <color name="colorThemeRed">#b40a01</color>
     <color name="colorThemeYellow">#FFC423</color>
 
     <color name="colorTransparent">#00000000</color>

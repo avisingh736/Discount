@@ -5,6 +5,8 @@ package com.discount.views
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-interface LoginView {
-    fun navigateToSignUp()
+interface AuthenticationView {
+    fun navigateTo()
+    fun onErrorOrInvalid(msg: String)
+    fun onSuccess(msg: String)
 }

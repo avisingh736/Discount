@@ -5,7 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        tools:context=".views.ui.activities.LoginActivity">
+        android:id="@+id/signInActivityRoot"
+        tools:context=".views.ui.activities.SignInActivity">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -30,13 +31,15 @@
                 android:layout_marginEnd="@dimen/dp_25"
                 android:orientation="vertical">
             <EditText
+                    android:id="@+id/etEmailId"
                     style="@style/AppTheme.EditText"
                     android:hint="@string/email_id"
                     android:fontFamily="@font/poppins_regular"
-                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:inputType="textVisiblePassword|textEmailAddress|textNoSuggestions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             <EditText
+                    android:id="@+id/etPassword"
                     style="@style/AppTheme.EditText"
                     android:hint="@string/password"
                     android:fontFamily="@font/poppins_regular"
@@ -48,16 +51,18 @@
             <LinearLayout
                     android:layout_marginTop="@dimen/dp_15"
                     android:layout_marginBottom="@dimen/dp_0"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <LinearLayout
                         android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
                     <ImageView
+                            android:id="@+id/ivRememberMe"
                             android:src="@drawable/ic_inactive_check_box_ico"
-                            android:layout_width="@dimen/dp_24"
-                            android:layout_height="@dimen/dp_24"/>
+                            android:layout_width="@dimen/dp_15"
+                            android:layout_height="@dimen/dp_15"/>
                     <TextView
                             android:text="@string/remember_me"
                             android:paddingStart="@dimen/dp_10"
@@ -70,6 +75,7 @@
                             android:layout_height="match_parent"/>
                 </LinearLayout>
                 <TextView
+                        android:id="@+id/tvForgotPassword"
                         android:text="@string/forgot_password"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
@@ -89,14 +95,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             <Button
+                    android:id="@+id/btnSignIn"
                     android:text="@string/sign_in"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
                     android:layout_marginTop="@dimen/dp_20"
                     android:layout_marginBottom="@dimen/dp_5"
                     android:textSize="@dimen/sp_14"
-                    android:fontFamily="@font/poppins_medium"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_bold"
+                    android:background="@drawable/meterial_button_red"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_55"/>
             <FrameLayout
@@ -127,6 +134,7 @@
                 </LinearLayout>
             </FrameLayout>
             <Button
+                    android:id="@+id/btnSignWithFacebook"
                     android:text="@string/sign_in_with_facebook"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
@@ -136,7 +144,7 @@
                     android:layout_height="@dimen/dp_55"
                     android:textSize="@dimen/sp_14"
                     android:fontFamily="@font/poppins_regular"
-                    android:backgroundTint="@color/colorFacebook"/>
+                    android:background="@drawable/meterial_button_fb"/>
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
@@ -151,7 +159,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <TextView
-                    android:id="@+id/btnGoToSignUp"
+
+                    android:id="@+id/tvGoToSignUp"
                     android:textColor="@color/colorThemeYellow"
                     android:text="@string/sign_up"
                     android:paddingStart="@dimen/dp_3"

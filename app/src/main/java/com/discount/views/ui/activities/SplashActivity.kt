@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity(),SplashView {
          *  According to flow we'll check user login here and manage the logics in presenter
          * */
         window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        startActivity(Intent(this,LoginActivity::class.java))
+        startActivity(Intent(this,SignInActivity::class.java))
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         finish()
     }
