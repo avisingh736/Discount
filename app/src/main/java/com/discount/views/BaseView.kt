@@ -1,10 +1,10 @@
 package com.discount.views
 
 /**
- * Created by Avinash Kumar on 11/1/19.
+ * Created by Avinash Kumar on 14/1/19.
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-interface SplashView {
-    fun navigateToHome()
+interface BaseView {
+    fun <T> navigateTo(clazz: Class<T>)
 }

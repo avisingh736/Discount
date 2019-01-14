@@ -15,19 +15,34 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.ui.activities.SplashActivity"
-                  android:screenOrientation="portrait">
+        <activity
+                android:name=".views.ui.activities.SplashActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".views.ui.activities.SignInActivity"
+        <activity
+                android:name=".views.ui.activities.SignInActivity"
                 android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".views.ui.activities.SignUpActivity"
-                  android:screenOrientation="portrait">
+        <activity
+                android:name=".views.ui.activities.SignUpActivity"
+                android:screenOrientation="portrait">
+        </activity>
+
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="d19e3329a07135150b0258f0506a131fc6852914"/>
+
+        <activity android:name=".views.ui.activities.ForgotPasswordActivity">
+        </activity>
+        <activity
+                android:name=".views.ui.activities.HomeActivity"
+                android:label="@string/title_activity_home"
+                android:theme="@style/AppTheme.Dark.ActionBar">
         </activity>
     </application>
 

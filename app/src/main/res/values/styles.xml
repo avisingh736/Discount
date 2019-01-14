@@ -9,6 +9,14 @@
         <item name="editTextStyle">@style/AppTheme.EditText</item>
     </style>
 
+    <style name="AppTheme.Dark.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorThemeRed</item>
+        <item name="colorPrimaryDark">@color/colorThemeRed</item>
+        <item name="colorAccent">@color/colorThemeYellow</item>
+        <item name="listPreferredItemHeightSmall">@dimen/dp_55</item>
+    </style>
+
     <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textColorHint">@color/colorHintText</item>
@@ -19,6 +27,23 @@
         <item name="colorControlActivated">@color/colorTransparent</item>
         <item name="colorControlHighlight">@color/colorTransparent</item>
         <item name="android:background">@drawable/borders_edit_text</item>
+    </style>
+
+    <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
+        <item name="colorPrimary">@color/colorThemeRed</item>
+        <item name="colorPrimaryDark">@color/colorThemeRed</item>
+        <item name="colorAccent">@color/colorThemeYellow</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/poppins_light</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.ProgressBar" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorThemeRed</item>
     </style>
 
 </resources>

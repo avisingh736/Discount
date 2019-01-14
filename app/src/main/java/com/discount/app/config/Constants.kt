@@ -28,8 +28,18 @@ class Constants {
         const val FAIL = "Fail"
 
         /**
+         *  Preferences constants
+         * */
+        const val IS_USER_LOGGED_IN = "is_user_logged_in"
+        const val REMEMBER_ME = "remember_me"
+        const val USER_DETAILS = "user_details"
+        const val EMAIL = "email"
+        const val PASSWORD = "password"
+
+        /**
          *  Request code constants
          * */
         const val PICK_IMAGE_REQUEST = 1001
+        const val STORAGE_PERMISSION = 1001
     }
 }

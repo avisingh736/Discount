@@ -1,11 +1,23 @@
 <resources>
     <string name="app_name">Discount</string>
 
+
+    <string name="home">Home</string>
+    <string name="coupon">Coupon</string>
+    <string name="category">Category</string>
+    <string name="store">Store</string>
+    <string name="my_account">My Account</string>
+    <string name="subscriptions">Subscription</string>
+    <string name="about_discount">About Discount</string>
+    <string name="contact_us">Contact Us</string>
+
     <string name="email_id">Email Id</string>
+    <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="remember_me">Remember Me</string>
-    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_">Forgot Password?</string>
+    <string name="forgot_password">Forgot Password</string>
     <string name="or">Or</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
@@ -19,11 +31,9 @@
 
     <string name="add_your_photo">Add your photo</string>
     <string name="create_your_account">Create your account</string>
-
-
-
-
-
+    <string name="send">Send</string>
+    <string name="forgot_your_password_">Forgot your password?</string>
+    <string name="please_enter_your_registered_email_address_below_to_reset_your_password">Please enter your registered email address below to reset your password</string>
 
     <!-- Alerts on the app-->
     <string name="invalid_email_id">Invalid email id</string>
@@ -33,4 +43,12 @@
     <string name="invalid_last_name">Invalid last name</string>
     <string name="password_not_matching">Password is not matching</string>
     <string name="profile_image_not_selected">Profile image not selected</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

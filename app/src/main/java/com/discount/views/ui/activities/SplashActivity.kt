@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.discount.R
+import com.discount.app.config.Constants
+import com.discount.app.prefs.PrefHelper
 import com.discount.presenters.SplashPresenter
-import com.discount.views.SplashView
+import com.discount.views.BaseView
 
-class SplashActivity : AppCompatActivity(),SplashView {
+class SplashActivity : AppCompatActivity(),BaseView {
     private val mSplashPresenter = SplashPresenter(this)
 
-    override fun navigateToHome() {
-        /**
-         *  This time we are going to Login Activity
-         *  According to flow we'll check user login here and manage the logics in presenter
-         * */
-        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        startActivity(Intent(this,SignInActivity::class.java))
+    override fun <T> navigateTo(clazz: Class<T>) {
+        startActivity(Intent(this,clazz))
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         finish()
     }

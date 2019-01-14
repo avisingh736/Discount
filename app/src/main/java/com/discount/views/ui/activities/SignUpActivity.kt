@@ -2,23 +2,29 @@ package com.discount.views.ui.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.discount.R
 import com.discount.app.config.Constants
-import com.discount.app.utils.MyLog
 import com.discount.interactors.SignUpInteractor
 import com.discount.presenters.SignUpPresenter
-import com.discount.views.AuthenticationView
+import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-class SignUpActivity : AppCompatActivity(), AuthenticationView {
+class SignUpActivity : AppCompatActivity(), DiscountView {
     private val TAG = SignUpActivity::class.java.simpleName
 
-    val mSignUpPresenter = SignUpPresenter(this, SignUpInteractor())
+    private val mSignUpPresenter = SignUpPresenter(this, SignUpInteractor())
 
-    override fun navigateTo() {
+    override fun progress(flag: Boolean) {
+        if (flag) progressBar.visibility = View.VISIBLE
+        else progressBar.visibility = View.GONE
+    }
+
+    override fun <T> navigateTo(clazz: Class<T>) {
         /**
          * This method will navigate to
          * */
@@ -40,8 +46,7 @@ class SignUpActivity : AppCompatActivity(), AuthenticationView {
         ivGoToBack.setOnClickListener { finish() }
         tvGoToSignIn.setOnClickListener { finish() }
         ivEditProfileImage.setOnClickListener {
-            val mIntent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(mIntent,Constants.PICK_IMAGE_REQUEST)
+            mSignUpPresenter.requestForStorageAccess()
         }
         btnSignUp.setOnClickListener {
             mSignUpPresenter.validate(etFirstName.text.toString(),etLastName.text.toString(),
@@ -64,6 +69,17 @@ class SignUpActivity : AppCompatActivity(), AuthenticationView {
         mSignUpPresenter.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constants.PICK_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK && data != null) ivProfileImage.setImageURI(data?.data)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.STORAGE_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mSignUpPresenter.pickImageForProfile()
+            } else {
+                mSignUpPresenter.requestForStorageAccess()
+            }
         }
     }
 }

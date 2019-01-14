@@ -35,6 +35,7 @@ interface DiscountApis {
         @Field("device_type") deviceType: String
     ): Call<AuthenticationResponse>
 
+    @FormUrlEncoded
     @POST(Constants.FORGOT_PASSWORD) fun forgotPassword(
         @Field("email") email: String
     ): Call<AuthenticationResponse>
