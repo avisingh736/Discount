@@ -3,42 +3,42 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
                 android:id="@+id/nav_home"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_inactive_home_ico"
                 android:title="@string/home"/>
         <item
                 android:id="@+id/nav_coupon"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/ic_inactive_voucher_ico"
                 android:title="@string/coupon"/>
         <item
                 android:id="@+id/nav_category"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/ic_inactive_category_ico"
                 android:title="@string/category"/>
         <item
                 android:id="@+id/nav_store"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_inactive_store_ico"
                 android:title="@string/store"/>
 
         <item
                 android:id="@+id/nav_my_account"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_inactive_profile_ico"
                 android:title="@string/my_account"/>
 
         <item
                 android:id="@+id/nav_subscription"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_inactive_dollar_ico"
                 android:title="@string/subscriptions"/>
 
         <item
                 android:id="@+id/nav_about_discount"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_inactive_info_ico"
                 android:title="@string/about_discount"/>
 
         <item
                 android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_inactive_contact_ico"
                 android:title="@string/contact_us"/>
     </group>
 

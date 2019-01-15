@@ -3,6 +3,8 @@ package com.discount.views.ui.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -12,7 +14,9 @@ import com.discount.app.config.Constants
 import com.discount.interactors.SignUpInteractor
 import com.discount.presenters.SignUpPresenter
 import com.discount.views.DiscountView
+import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.io.File
 
 class SignUpActivity : AppCompatActivity(), DiscountView {
     private val TAG = SignUpActivity::class.java.simpleName
@@ -45,7 +49,7 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
 
         ivGoToBack.setOnClickListener { finish() }
         tvGoToSignIn.setOnClickListener { finish() }
-        ivEditProfileImage.setOnClickListener {
+        ivProfileImage.setOnClickListener {
             mSignUpPresenter.requestForStorageAccess()
         }
         btnSignUp.setOnClickListener {
@@ -66,9 +70,27 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        mSignUpPresenter.onActivityResult(requestCode, resultCode, data)
+        mSignUpPresenter.onActivityResult(requestCode,resultCode,data)
         if (requestCode == Constants.PICK_IMAGE_REQUEST) {
-            if (resultCode == Activity.RESULT_OK && data != null) ivProfileImage.setImageURI(data?.data)
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                llSelectImage.alpha = 0f
+            } else {
+                llSelectImage.alpha = 1f
+                ivProfileImage.setImageURI(null)
+            }
+        } else if (requestCode == Constants.CAPTURE_IMAGE_REQUEST) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                llSelectImage.alpha = 0f
+            } else {
+                llSelectImage.alpha = 1f
+                ivProfileImage.setImageURI(null)
+            }
+        } else if (requestCode == UCrop.REQUEST_CROP) {
+            if (resultCode == RESULT_OK) {
+                ivProfileImage.setImageURI(UCrop.getOutput(data!!))
+            } else {
+                ivProfileImage.setImageURI(null)
+            }
         }
     }
 
@@ -76,7 +98,7 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == Constants.STORAGE_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mSignUpPresenter.pickImageForProfile()
+                mSignUpPresenter.showPickOptionsDialog()
             } else {
                 mSignUpPresenter.requestForStorageAccess()
             }

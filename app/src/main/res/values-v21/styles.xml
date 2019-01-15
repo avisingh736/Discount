@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Dark.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorThemeRed</item>
+        <item name="colorPrimaryDark">@color/colorThemeRed</item>
+        <item name="colorAccent">@color/colorThemeYellow</item>
+        <item name="listPreferredItemHeightSmall">@dimen/dp_50</item>
+        <item name="android:scrollbarThumbVertical">@color/colorTransparent</item>
+        <item name="android:statusBarColor">@color/colorTransparent</item>
+    </style>
+</resources>

@@ -80,7 +80,7 @@ class DividerItemDecoration(context: Context, orientation: Int) : RecyclerView.I
             parent.getDecoratedBoundsWithMargins(child, this.mBounds)
             val bottom = this.mBounds.bottom + Math.round(child.translationY)
             val top = bottom - this.mDivider!!.intrinsicHeight
-            this.mDivider!!.setBounds(left+120, top, right, bottom)
+            this.mDivider!!.setBounds(left+150, top, right, bottom)
             this.mDivider!!.draw(canvas)
         }
 

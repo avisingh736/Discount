@@ -35,6 +35,13 @@
     <string name="forgot_your_password_">Forgot your password?</string>
     <string name="please_enter_your_registered_email_address_below_to_reset_your_password">Please enter your registered email address below to reset your password</string>
 
+    <string name="get_your_coupon_free_here">Get your coupon free here</string>
+
+    <string name="please_select_an_option">Please select an option</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="change">Change</string>
+
     <!-- Alerts on the app-->
     <string name="invalid_email_id">Invalid email id</string>
     <string name="invalid_password">Invalid password</string>
@@ -50,5 +57,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Lorem Ipsum-->
+    <string name="l1">What is Lorem Ipsum?</string>
+    <string name="l2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

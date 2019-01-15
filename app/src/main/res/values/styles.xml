@@ -5,8 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorWhite</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorWhite</item>
         <item name="editTextStyle">@style/AppTheme.EditText</item>
+        <item name="android:scrollbarThumbVertical">@color/colorTransparent</item>
     </style>
 
     <style name="AppTheme.Dark.ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -14,7 +15,8 @@
         <item name="colorPrimary">@color/colorThemeRed</item>
         <item name="colorPrimaryDark">@color/colorThemeRed</item>
         <item name="colorAccent">@color/colorThemeYellow</item>
-        <item name="listPreferredItemHeightSmall">@dimen/dp_55</item>
+        <item name="listPreferredItemHeightSmall">@dimen/dp_50</item>
+        <item name="android:scrollbarThumbVertical">@color/colorTransparent</item>
     </style>
 
     <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
@@ -24,9 +26,16 @@
         <item name="android:padding">@dimen/dp_10</item>
         <item name="android:gravity">center_vertical|start</item>
         <item name="colorControlNormal">@color/colorTransparent</item>
-        <item name="colorControlActivated">@color/colorTransparent</item>
-        <item name="colorControlHighlight">@color/colorTransparent</item>
+        <item name="colorControlActivated">@color/colorThemeYellow</item>
+        <item name="colorControlHighlight">@color/colorThemeYellow</item>
         <item name="android:background">@drawable/borders_edit_text</item>
+        <item name="android:textCursorDrawable">@drawable/et_cursor</item>
+        <item name="android:textColorHighlight">@color/colorThemeYellow</item>
+        <item name="android:imeOptions">flagNoFullscreen</item>
+
+        <item name="android:textSelectHandle">@drawable/et_selected_handle_drop</item>
+        <item name="android:textSelectHandleLeft">@drawable/et_selected_handle_drop_left</item>
+        <item name="android:textSelectHandleRight">@drawable/et_selected_handle_drop_right</item>
     </style>
 
     <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
@@ -38,9 +47,16 @@
         <item name="android:fontFamily">@font/poppins_light</item>
     </style>
 
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorWhite</item>
+    </style>
 
     <style name="AppTheme.ProgressBar" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/colorThemeRed</item>

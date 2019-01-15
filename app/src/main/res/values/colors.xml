@@ -11,6 +11,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#c6c1c1</color>
+    <color name="colorMediumGray">#828282</color>
     <color name="colorText">#111111</color>
     <color name="colorTextGray">#626262</color>
     <color name="colorHintText">#B2B1B1</color>

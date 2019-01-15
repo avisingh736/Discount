@@ -57,9 +57,11 @@
                         android:layout_height="@dimen/dp_85">
                     <ImageView
                             android:id="@+id/ivProfileImage"
+                            android:scaleType="centerCrop"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     <LinearLayout
+                            android:id="@+id/llSelectImage"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:orientation="vertical"

@@ -66,7 +66,11 @@
 
 
     <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_180">180dp</dimen>
     <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_260">260dp</dimen>
 
 
     <dimen name="sp_1">1sp</dimen>
