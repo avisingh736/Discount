@@ -19,10 +19,10 @@ class HomeCouponAdapter(var mContext: Context): RecyclerView.Adapter<HomeCouponA
     }
 
     override fun getItemCount(): Int {
-        return 8
+        return 10
     }
 
-    override fun onBindViewHolder(p0: CouponViewHolder, p1: Int) {
+    override fun onBindViewHolder(holder: CouponViewHolder, position: Int) {
         //ToDo: To change body of created functions use File | Settings | File Templates.
     }
 

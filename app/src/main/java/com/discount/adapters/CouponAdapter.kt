@@ -1,11 +1,14 @@
 package com.discount.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.discount.R
+import com.discount.views.ui.activities.CouponActivity
+import com.discount.views.ui.activities.CouponDetailActivity
 
 /**
  * Created by Avinash Kumar on 15/1/19.
@@ -27,5 +30,12 @@ class CouponAdapter(var mContext: Context): RecyclerView.Adapter<CouponAdapter.C
     }
 
 
-    class CouponViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class CouponViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),View.OnClickListener {
+        init {
+            itemView.setOnClickListener(this@CouponViewHolder)
+        }
+        override fun onClick(view: View?) {
+            (mContext as CouponActivity).navigateTo(CouponDetailActivity::class.java)
+        }
+    }
 }

@@ -10,21 +10,27 @@
     <string name="subscriptions">Subscription</string>
     <string name="about_discount">About Discount</string>
     <string name="contact_us">Contact Us</string>
+    <string name="logout">Logout</string>
 
     <string name="email_id">Email Id</string>
     <string name="email_address">Email address</string>
+    <string name="gender">Gender</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="remember_me">Remember Me</string>
     <string name="forgot_password_">Forgot Password?</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="change_password">Change Password</string>
     <string name="or">Or</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in_with_facebook">Sign in with facebook</string>
+    <string name="details">Details</string>
 
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="phone_no">Phone Number</string>
 
     <string name="dont_have_an_account_sign_up">Don\'t have an account?</string>
     <string name="already_have_an_account_sign_up">Already have an account?</string>
@@ -35,20 +41,35 @@
     <string name="forgot_your_password_">Forgot your password?</string>
     <string name="please_enter_your_registered_email_address_below_to_reset_your_password">Please enter your registered email address below to reset your password</string>
 
-    <string name="get_your_coupon_free_here">Get your coupon free here</string>
+    <string name="get_your_coupon">Get your coupon</string>
+    <string name="free">free</string>
+    <string name="here">here</string>
 
     <string name="please_select_an_option">Please select an option</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
     <string name="change">Change</string>
+    <string name="please_fill_details_">Please fill details.</string>
+    <string name="university_name">University name</string>
+    <string name="student_id">Student Id</string>
+    <string name="add">Add</string>
+    <string name="coupon_info">Coupon Info</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="voucher_code_">Voucher code:</string>
+    <string name="valid_till">Valid till: 16/01/2019</string>
 
     <!-- Alerts on the app-->
+    <string name="please_enter_email_id">Please enter email id</string>
     <string name="invalid_email_id">Invalid email id</string>
+    <string name="please_enter_password">Please enter password</string>
     <string name="invalid_password">Invalid password</string>
     <string name="login_successful">Login successful</string>
+    <string name="please_enter_first_name">Please enter first name</string>
     <string name="invalid_first_name">Invalid first name</string>
+    <string name="please_enter_last_name">Please enter last name</string>
     <string name="invalid_last_name">Invalid last name</string>
-    <string name="password_not_matching">Password is not matching</string>
+    <string name="please_confirm_password">Please confirm password</string>
+    <string name="password_does_not_match">Password does not match</string>
     <string name="profile_image_not_selected">Profile image not selected</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -57,12 +78,27 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="terms_and_conditions_apply_">T&amp;C Apply*</string>
+    <string name="are_you_student_">Are you student?</string>
+    <string name="view_more">View  More</string>
 
     <!-- Lorem Ipsum-->
     <string name="l1">What is Lorem Ipsum?</string>
     <string name="l2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="l3">OFF60</string>
+    <string name="l4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="hello">Hello</string>
+    <string name="world">World</string>
+    <string name="devs_mail">devs@mail.com</string>
+    <string name="dob">12/11/1990</string>
+    <string name="male">Male</string>
+    <string name="mn">+1&#8211;7879464523</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- API keys-->
+    <string name="google_maps_api_kay">AIzaSyBK-w5d0vnl3phAmvwO3R2ZDmT6sX3Qsso</string>
 
 </resources>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#b40a01</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#ffe7a7</color>
+
+    <color name="ucrop_color_statusbar" tools:override="true">#b40a01</color>
+    <color name="ucrop_color_toolbar" tools:override="true">#b40a01</color>
 
     <color name="colorThemeRed">#b40a01</color>
     <color name="colorThemeYellow">#FFC423</color>

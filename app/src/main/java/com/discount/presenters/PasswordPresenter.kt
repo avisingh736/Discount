@@ -31,6 +31,10 @@ class PasswordPresenter(var mDiscountView: DiscountView?, var mPasswordInteracto
     fun validate(email: String) {
         mDiscountView?.let {
             if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                if (email.isEmpty()) {
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_email_id))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_email_id))
                 return
             }

@@ -3,6 +3,8 @@
     <dimen name="dp_2_minus">-2dp</dimen>
     <dimen name="dp_1_minus">-1dp</dimen>
     <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_0_5">0.5</dimen>
+    <dimen name="dp_0_7">0.7</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_2">2dp</dimen>
     <dimen name="dp_3">3dp</dimen>
@@ -61,16 +63,25 @@
     <dimen name="dp_58">58dp</dimen>
     <dimen name="dp_59">59dp</dimen>
 
+    <dimen name="dp_70">70dp</dimen>
     <dimen name="dp_78">78dp</dimen>
+    <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_85">85dp</dimen>
 
 
     <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_110">110dp</dimen>
     <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_130">130dp</dimen>
+    <dimen name="dp_140">140dp</dimen>
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_180">180dp</dimen>
     <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_220">220dp</dimen>
+    <dimen name="dp_240">240dp</dimen>
     <dimen name="dp_260">260dp</dimen>
+    <dimen name="dp_280">280dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
 
 
     <dimen name="sp_1">1sp</dimen>
@@ -102,4 +113,5 @@
 
     <!-- Overridden dimensions-->
     <dimen name="design_navigation_separator_vertical_padding">0dp</dimen>
+    <dimen name="action_bar_margin_top">24dp</dimen>
 </resources>

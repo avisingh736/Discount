@@ -24,6 +24,8 @@ class SplashActivity : AppCompatActivity(),BaseView {
         setContentView(R.layout.activity_splash)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+        val prefHelper = PrefHelper.instance
+        prefHelper?.savePref(Constants.DIALOG,true)
         mSplashPresenter.onStart()
     }
 

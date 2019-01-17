@@ -3,6 +3,7 @@ package com.discount.views.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.internal.NavigationMenuView
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
@@ -10,8 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.MenuItem
+import android.view.View
 import com.discount.R
 import com.discount.adapters.HomeCouponAdapter
+import com.discount.app.config.Constants
+import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.DividerItemDecoration
 import com.discount.app.utils.GridItemDecoration
 import com.discount.app.utils.MyUtils
@@ -49,10 +53,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarHome)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbarHome, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -65,10 +70,33 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.menu.getItem(0).isChecked = true
         MyUtils.addFontToNavDrawer(nav_view.menu)
 
-        rvHomeCouponsHere.layoutManager = GridLayoutManager(this,2)
+        appBarHome.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener{
+            var isShow = true
+            var scrollRange = -1
+            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout!!.totalScrollRange
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarHome.title = "Home                   "
+                    isShow = true
+                } else if(isShow) {
+                    collapsingToolbarHome.title = " "
+                    isShow = false
+                }
+            }
+        })
+
+        rvHomeCouponsHere.layoutManager = GridLayoutManager(this, 2)
         rvHomeCouponsHere.addItemDecoration(GridItemDecoration(2))
         rvHomeCouponsHere.adapter = HomeCouponAdapter(this)
+
+        val prefHelper = PrefHelper.instance
+        if(prefHelper?.getPref(Constants.DIALOG,false)!!) {
+            mHomePresenter.showStudentDialog()
+        }
     }
+
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -86,15 +114,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_coupon -> {
                 startActivity(Intent(this,CouponActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_category -> {
-
+                startActivity(Intent(this,CategoryActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_store -> {
 
             }
             R.id.nav_my_account -> {
-
+                startActivity(Intent(this,ProfileActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_subscription -> {
 

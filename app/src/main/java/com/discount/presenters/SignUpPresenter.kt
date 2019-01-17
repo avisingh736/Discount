@@ -21,7 +21,9 @@ import com.discount.app.config.Constants
 import com.discount.interactors.SignUpInteractor
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.HomeActivity
+import com.discount.views.ui.activities.SignUpActivity
 import com.yalantis.ucrop.UCrop
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_profile_image_options.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -67,38 +69,66 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
                  password: String, cPassword: String) {
         mDiscountView?.let {
             if(firstName.isEmpty() || firstName.length < 3) {
+                if(firstName.isEmpty()) {
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_first_name))
+                    (mDiscountView as SignUpActivity).etFirstName.requestFocus()
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_first_name))
                 return
             }
 
             if(lastName.isEmpty() || lastName.length < 3) {
+                if (lastName.isEmpty()) {
+                    (mDiscountView as SignUpActivity).etLastName.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_last_name))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_last_name))
                 return
             }
 
             if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                if(email.isEmpty()) {
+                    (mDiscountView as SignUpActivity).etEmailId.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_email_id))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_email_id))
                 return
             }
 
             if(password.isEmpty() || password.length < 6) {
+                if (password.isEmpty()) {
+                    (mDiscountView as SignUpActivity).etPassword.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_password))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_password))
                 return
             }
 
-            if(password != cPassword) {
-                it.onErrorOrInvalid((it as Context).resources.getString(R.string.password_not_matching))
-                return
+            if (cPassword.isEmpty() || password != cPassword) {
+                if (cPassword.isEmpty()) {
+                    (mDiscountView as SignUpActivity).etConfirmPassword.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_confirm_password))
+                    return
+                }
+                if(password != cPassword) {
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.password_does_not_match))
+                    return
+                }
             }
 
-            if(mUri == null) {
-                it.onErrorOrInvalid((it as Context).resources.getString(R.string.profile_image_not_selected))
-                return
-            }
 
-            val mFile = File(mUri?.path)
-            val mRequestBody = RequestBody.create(MediaType.parse("image/*"),mFile)
-            val part = MultipartBody.Part.createFormData("profile_image",mFile.name,mRequestBody)
+            val part = if(mUri != null) {
+                val mFile = File(mUri?.path)
+                val mRequestBody = RequestBody.create(MediaType.parse("image/*"),mFile)
+                MultipartBody.Part.createFormData("profile_image",mFile.name,mRequestBody)
+            } else {
+                val mRequestBody = RequestBody.create(MultipartBody.FORM,"")
+                MultipartBody.Part.createFormData("profile_image","",mRequestBody)
+            }
 
             val fName = RequestBody.create(MediaType.parse("text/plain"),firstName)
             val lName = RequestBody.create(MediaType.parse("text/plain"),lastName)
@@ -195,7 +225,7 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
         dialog.show()
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)

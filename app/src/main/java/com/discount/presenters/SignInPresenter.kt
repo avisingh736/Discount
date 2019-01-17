@@ -10,7 +10,9 @@ import com.discount.interactors.SignInInteractor
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.ForgotPasswordActivity
 import com.discount.views.ui.activities.HomeActivity
+import com.discount.views.ui.activities.SignInActivity
 import com.discount.views.ui.activities.SignUpActivity
+import kotlinx.android.synthetic.main.activity_sign_in.*
 
 /**
  * Created by Avinash Kumar on 11/1/19.
@@ -52,11 +54,21 @@ class SignInPresenter(var mDiscountView: DiscountView?, var mInteractor: SignInI
     fun validate(email: String, password: String) {
         mDiscountView?.let {
             if(email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                if (email.isEmpty()) {
+                    (mDiscountView as SignInActivity).etEmailId.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_email_id))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_email_id))
                 return
             }
 
             if(password.isEmpty() || password.length < 6) {
+                if (password.isEmpty()) {
+                    (mDiscountView as SignInActivity).etPassword.requestFocus()
+                    it.onErrorOrInvalid((it as Context).resources.getString(R.string.please_enter_password))
+                    return
+                }
                 it.onErrorOrInvalid((it as Context).resources.getString(R.string.invalid_password))
                 return
             }

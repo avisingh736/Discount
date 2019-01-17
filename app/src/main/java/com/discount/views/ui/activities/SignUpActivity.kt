@@ -3,8 +3,6 @@ package com.discount.views.ui.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -16,7 +14,6 @@ import com.discount.presenters.SignUpPresenter
 import com.discount.views.DiscountView
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.io.File
 
 class SignUpActivity : AppCompatActivity(), DiscountView {
     private val TAG = SignUpActivity::class.java.simpleName
@@ -30,8 +27,13 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
 
     override fun <T> navigateTo(clazz: Class<T>) {
         /**
-         * This method will navigate to
+         * This method will navigate to home
          * */
+        val mIntent = Intent(this,clazz).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(mIntent)
+        overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
     override fun onErrorOrInvalid(msg: String) {
@@ -45,7 +47,6 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-
 
         ivGoToBack.setOnClickListener { finish() }
         tvGoToSignIn.setOnClickListener { finish() }
@@ -88,8 +89,10 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
         } else if (requestCode == UCrop.REQUEST_CROP) {
             if (resultCode == RESULT_OK) {
                 ivProfileImage.setImageURI(UCrop.getOutput(data!!))
+                llSelectImage.alpha = 0f
             } else {
                 ivProfileImage.setImageURI(null)
+                llSelectImage.alpha = 1f
             }
         }
     }
