@@ -12,7 +12,7 @@ import com.discount.views.DiscountView
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-class PasswordPresenter(var mDiscountView: DiscountView?, var mPasswordInteractor: PasswordInteractor): PasswordInteractor.OnProcessFinishedListener {
+class PasswordPresenter(var mDiscountView: DiscountView?, var mPasswordInteractor: PasswordInteractor): PasswordInteractor.OnResponseListener {
     override fun onError(msg: String) {
         mDiscountView?.let {
             it.progress(false)

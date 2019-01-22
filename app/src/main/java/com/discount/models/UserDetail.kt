@@ -1,6 +1,7 @@
 package com.discount.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by Avinash Kumar on 12/1/19.
@@ -29,4 +30,4 @@ data class UserDetail(
     @SerializedName("auth_token") var authToken: String,
     @SerializedName("created_on") var createdOn: String,
     @SerializedName("updated_on") var updatedOn: String
-)
+): Serializable

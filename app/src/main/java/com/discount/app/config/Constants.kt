@@ -18,6 +18,8 @@ class Constants {
         const val SIGN_UP = "service/signup" //POST
         const val LOGIN = "service/login" //POST
         const val FORGOT_PASSWORD = "service/forgotPassword" //POST
+        const val UNIVERSITY_LIST = "university/getUniversityList" //GET
+        const val ADD_USER_UNIVERSITY = "university/addUserUniversity" //POST
 
 
 
@@ -30,7 +32,7 @@ class Constants {
         /**
          *  Preferences constants
          * */
-        const val DIALOG = "dialog"
+        const val DIALOG = "mDialog"
         const val IS_USER_LOGGED_IN = "is_user_logged_in"
         const val REMEMBER_ME = "remember_me"
         const val USER_DETAILS = "user_details"

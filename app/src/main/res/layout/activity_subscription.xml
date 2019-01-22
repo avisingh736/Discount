@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.ui.activities.SubscriptionActivity">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                <ImageView
+                        android:id="@+id/ivGoToBack"
+                        android:src="@drawable/ic_back_ico"
+                        android:padding="@dimen/dp_12"
+                        android:layout_width="@dimen/dp_45"
+                        android:layout_height="@dimen/dp_45"/>
+                <TextView
+                        android:text="@string/subscriptions"
+                        android:textSize="@dimen/sp_16"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/colorText"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                <ImageView
+                        android:padding="@dimen/dp_12"
+                        android:layout_width="@dimen/dp_45"
+                        android:layout_height="@dimen/dp_45"/>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSubscriptionPlan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
@@ -16,6 +17,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.util.Patterns
 import android.view.LayoutInflater
+import com.discount.BuildConfig
 import com.discount.R
 import com.discount.app.config.Constants
 import com.discount.interactors.SignUpInteractor
@@ -30,6 +32,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -160,8 +163,8 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
                 mUri = null
             }
         } else if (requestCode == Constants.CAPTURE_IMAGE_REQUEST) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                data.data = getImageUri((mDiscountView as Context),data?.extras.get("data") as Bitmap)
+            if (resultCode == Activity.RESULT_OK) {
+                //data.data = getImageUri((mDiscountView as Context),data?.extras.get("data") as Bitmap)
                 val options = UCrop.Options()
                 options.setCompressionQuality(100)
                 options.setMaxBitmapSize(10000)
@@ -204,11 +207,23 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
 
     private fun captureProfileImageFromCamera() {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss",Locale.getDefault()).format(Date())
-        val file = File(Environment.getExternalStorageDirectory(), "/Discount/Images/photo_$timeStamp.jpg")
-        imageUri = FileProvider.getUriForFile(mDiscountView as Context,"com.discount.fileprovider",file)
-        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        takePicture.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)
-        (mDiscountView as Activity).startActivityForResult(takePicture, Constants.CAPTURE_IMAGE_REQUEST)
+
+        try {
+            val storageDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "Camera")
+            val mFile = File.createTempFile("IMAGE_$timeStamp",".jpg",storageDir)
+
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                imageUri = FileProvider.getUriForFile(mDiscountView as Context, BuildConfig.APPLICATION_ID + ".provider",mFile)
+                cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            } else {
+                imageUri = Uri.fromFile(mFile)
+            }
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)
+            (mDiscountView as SignUpActivity).startActivityForResult(cameraIntent, Constants.CAPTURE_IMAGE_REQUEST)
+        } catch (e: Exception) {
+
+        }
     }
 
     fun showPickOptionsDialog() {

@@ -10,35 +10,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-        <LinearLayout
+
+        <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <ImageView
-                    android:id="@+id/ivGoToBack"
-                    android:src="@drawable/ic_back_ico"
-                    android:padding="@dimen/dp_12"
-                    android:layout_width="@dimen/dp_45"
-                    android:layout_height="@dimen/dp_45"/>
-            <TextView
-                    android:text="@string/details"
-                    android:textSize="@dimen/sp_16"
-                    android:gravity="center"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/colorText"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"/>
-            <ImageView
+                android:background="@color/colorWhite">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <ImageView
+                        android:id="@+id/ivGoToBack"
+                        android:src="@drawable/ic_back_ico"
+                        android:padding="@dimen/dp_12"
+                        android:layout_width="@dimen/dp_45"
+                        android:layout_height="@dimen/dp_45"/>
+                <TextView
+                        android:text="@string/details"
+                        android:textSize="@dimen/sp_16"
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/colorText"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                <ImageView
 
-                    android:padding="@dimen/dp_12"
-                    android:layout_width="@dimen/dp_45"
-                    android:layout_height="@dimen/dp_45"/>
-        </LinearLayout>
-        <View
-                android:background="@drawable/toolbar_drop_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_3"/>
+                        android:padding="@dimen/dp_12"
+                        android:layout_width="@dimen/dp_45"
+                        android:layout_height="@dimen/dp_45"/>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -51,6 +53,7 @@
                         android:layout_height="@dimen/dp_100"
                         android:paddingStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_10"
+                        android:background="@drawable/details_bg_img"
                         android:orientation="horizontal">
                     <com.github.siyamed.shapeimageview.CircularImageView
                             android:layout_gravity="center_vertical"
@@ -232,13 +235,15 @@
         </ScrollView>
     </LinearLayout>
     <Button
-            android:id="@+id/btnSignUp"
-            android:text="@string/sign_up"
+            android:id="@+id/btnRedeem"
+            android:text="@string/redeem"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/colorWhite"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_marginBottom="@dimen/dp_15"
+            android:layout_marginStart="@dimen/dp_15"
+            android:layout_marginEnd="@dimen/dp_15"
             android:textSize="@dimen/sp_14"
             android:fontFamily="@font/poppins_bold"
             android:background="@drawable/meterial_button_red"

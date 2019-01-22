@@ -15,9 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import io.fabric.sdk.android.services.settings.IconRequest.build
 import android.os.StrictMode
-
-
-
+import android.util.TypedValue
 
 
 /**
@@ -65,6 +63,8 @@ class Discount: Application() {
                 cursor?.close()
             }
         }
+
+        fun dpToPx(mContext: Context, dp: Float): Int = (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mContext.resources.displayMetrics)).toInt()
 
     }
 }

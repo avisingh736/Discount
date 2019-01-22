@@ -51,13 +51,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
                 <FrameLayout
-                        android:background="@drawable/borders_edit_text"
+                        android:background="@drawable/borders_frame"
                         android:layout_gravity="start"
                         android:layout_width= "@dimen/dp_85"
                         android:layout_height="@dimen/dp_85">
-                    <ImageView
+                    <com.github.siyamed.shapeimageview.RoundedImageView
                             android:id="@+id/ivProfileImage"
-                            android:scaleType="centerCrop"
+                            app:siRadius="@dimen/dp_5"
+                            app:siSquare="true"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     <LinearLayout

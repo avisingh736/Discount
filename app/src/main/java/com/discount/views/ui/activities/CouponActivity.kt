@@ -27,6 +27,9 @@ class CouponActivity : AppCompatActivity(),BaseView {
         rvCoupons.adapter = CouponAdapter(this)
 
         ivGoToBack.setOnClickListener { finish() }
+        ivFilter.setOnClickListener {
+            navigateTo(CouponFilterActivity::class.java)
+        }
 
         tvChangeAddress.setOnClickListener {
             val placePicker = PlacePicker.IntentBuilder().build(this@CouponActivity)

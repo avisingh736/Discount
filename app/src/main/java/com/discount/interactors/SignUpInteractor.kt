@@ -4,7 +4,7 @@ import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
-import com.discount.models.AuthenticationResponse
+import com.discount.models.AuthResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -29,8 +29,8 @@ class SignUpInteractor {
                  deviceType: RequestBody, socialId: RequestBody, socialType: RequestBody,
                  mListener: OnRegistrationFinishedListener) {
         Discount.getApis().register(firstName,lastName,email,password,
-            cPassword,profileImage,deviceType,socialId,socialType).enqueue(object : Callback<AuthenticationResponse>{
-            override fun onResponse(call: Call<AuthenticationResponse>, response: Response<AuthenticationResponse>) {
+            cPassword,profileImage,deviceType,socialId,socialType).enqueue(object : Callback<AuthResponse>{
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
                 response.body()?.run {
                     if (status == Constants.SUCCESS) {
@@ -46,7 +46,7 @@ class SignUpInteractor {
                 }
             }
 
-            override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 mListener.onError(t.localizedMessage)
                 MyLog.e(TAG,"Error: ",t)
             }

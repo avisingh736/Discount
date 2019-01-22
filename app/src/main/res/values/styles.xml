@@ -58,4 +58,10 @@
         <item name="colorAccent">@color/colorThemeRed</item>
     </style>
 
+    <style name="ErrorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/sp_10</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
 </resources>

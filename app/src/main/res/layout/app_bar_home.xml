@@ -32,8 +32,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                     <ImageView
+                            android:id="@+id/goForCoupon"
                             android:src="@drawable/search_ico"
-                            android:layout_width="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/dp_150"
                             android:layout_height="120dp"/>
                     <LinearLayout
                             android:layout_gravity="center"
@@ -89,5 +91,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home"/>
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/alertRootLayoutHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </android.support.design.widget.CoordinatorLayout>

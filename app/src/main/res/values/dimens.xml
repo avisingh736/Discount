@@ -63,6 +63,8 @@
     <dimen name="dp_58">58dp</dimen>
     <dimen name="dp_59">59dp</dimen>
 
+    <dimen name="dp_65">65dp</dimen>
+
     <dimen name="dp_70">70dp</dimen>
     <dimen name="dp_78">78dp</dimen>
     <dimen name="dp_80">80dp</dimen>

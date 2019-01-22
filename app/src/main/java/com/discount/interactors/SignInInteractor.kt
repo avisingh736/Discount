@@ -4,7 +4,7 @@ import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
-import com.discount.models.AuthenticationResponse
+import com.discount.models.AuthResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,8 +23,8 @@ class SignInInteractor {
     }
 
     fun login(email: String, password: String, deviceType: String = "2", mListener: OnLoginFinishedListener) {
-        Discount.getApis().login(email,password,deviceType).enqueue(object : Callback<AuthenticationResponse> {
-            override fun onResponse(call: Call<AuthenticationResponse>, response: Response<AuthenticationResponse>) {
+        Discount.getApis().login(email,password,deviceType).enqueue(object : Callback<AuthResponse> {
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
                 response.body()?.run {
                     if (status == Constants.SUCCESS) {
@@ -44,7 +44,7 @@ class SignInInteractor {
                 }
             }
 
-            override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 mListener.onError(t.localizedMessage)
                 MyLog.e(TAG,"Error: ",t)
             }

@@ -8,19 +8,15 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <android.support.v7.widget.CardView
+        <com.github.siyamed.shapeimageview.RoundedImageView
+                android:src="@drawable/demo"
+                android:scaleType="centerCrop"
+                app:siRadius="@dimen/dp_8"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:layout_width="@dimen/dp_110"
-                android:layout_height="@dimen/dp_110"
-                app:cardCornerRadius="@dimen/dp_8">
-            <ImageView
-                    android:src="@drawable/demo"
-                    android:scaleType="centerCrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-        </android.support.v7.widget.CardView>
+                android:layout_height="@dimen/dp_110"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical"

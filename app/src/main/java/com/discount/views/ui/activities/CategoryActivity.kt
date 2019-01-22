@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import com.discount.R
 import com.discount.adapters.CategoryAdapter
-import com.discount.app.utils.GridItemDecoration
+import com.discount.app.Discount
+import com.discount.app.utils.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class CategoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
         rvCategory.layoutManager = GridLayoutManager(this,2)
-        rvCategory.addItemDecoration(GridItemDecoration(2))
+        rvCategory.addItemDecoration(GridSpacingItemDecoration(2,Discount.dpToPx(this,5f),true))
         rvCategory.adapter = CategoryAdapter(this)
 
         ivGoToBack.setOnClickListener { finish() }

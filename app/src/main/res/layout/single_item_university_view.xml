@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+        android:id="@+id/tvUniversityName"
+        android:text="@string/category"
+        android:textSize="@dimen/sp_14"
+        android:gravity="start|center_vertical"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_10"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/colorText"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingTop="@dimen/dp_3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        xmlns:android="http://schemas.android.com/apk/res/android"/>

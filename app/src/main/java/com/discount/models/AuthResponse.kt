@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-data class AuthenticationResponse(
+data class AuthResponse(
     @SerializedName("status") var status: String,
     @SerializedName("message") var message: String,
     @SerializedName("userDetail") var userDetail: UserDetail

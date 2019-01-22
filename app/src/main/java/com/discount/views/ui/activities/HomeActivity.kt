@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.internal.NavigationMenuView
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,11 +15,11 @@ import android.view.MenuItem
 import android.view.View
 import com.discount.R
 import com.discount.adapters.HomeCouponAdapter
-import com.discount.app.config.Constants
-import com.discount.app.prefs.PrefHelper
+import com.discount.app.Discount
 import com.discount.app.utils.DividerItemDecoration
-import com.discount.app.utils.GridItemDecoration
 import com.discount.app.utils.MyUtils
+import com.discount.app.utils.GridSpacingItemDecoration
+import com.discount.interactors.HomeInteractor
 import com.discount.presenters.HomePresenter
 import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -32,14 +33,14 @@ import kotlinx.android.synthetic.main.content_home.*
  */
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, DiscountView {
 
-    private val mHomePresenter = HomePresenter(this);
+    private val mHomePresenter = HomePresenter(this, HomeInteractor())
 
     override fun onErrorOrInvalid(msg: String) {
-        //TODO: To change body of created functions use File | Settings | File Templates.
+        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(msg: String) {
-        //TODO: To change body of created functions use File | Settings | File Templates.
+        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun progress(flag: Boolean) {
@@ -47,7 +48,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun <T> navigateTo(clazz: Class<T>) {
-        //TODO: To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this,clazz))
+        overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,16 +89,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
 
+        goForCoupon.setOnClickListener { navigateTo(CouponActivity::class.java) }
+
         rvHomeCouponsHere.layoutManager = GridLayoutManager(this, 2)
-        rvHomeCouponsHere.addItemDecoration(GridItemDecoration(2))
+        rvHomeCouponsHere.addItemDecoration(GridSpacingItemDecoration(2,Discount.dpToPx(this,5f),true))
         rvHomeCouponsHere.adapter = HomeCouponAdapter(this)
 
-        val prefHelper = PrefHelper.instance
-        if(prefHelper?.getPref(Constants.DIALOG,false)!!) {
-            mHomePresenter.showStudentDialog()
-        }
+        mHomePresenter.studentDialogStatus()
     }
-
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -121,20 +121,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_store -> {
-
+                startActivity(Intent(this,StoreActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_my_account -> {
                 startActivity(Intent(this,ProfileActivity::class.java))
                 overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_subscription -> {
-
+                startActivity(Intent(this,SubscriptionActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_about_discount -> {
-
+                startActivity(Intent(this,AboutUsActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
             R.id.nav_contact_us -> {
-
+                startActivity(Intent(this,ContactUsActivity::class.java))
+                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
             }
         }
 

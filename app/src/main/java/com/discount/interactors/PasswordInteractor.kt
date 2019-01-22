@@ -3,7 +3,7 @@ package com.discount.interactors
 import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
-import com.discount.models.AuthenticationResponse
+import com.discount.models.AuthResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,14 +16,14 @@ import retrofit2.Response
 class PasswordInteractor {
     private val TAG = PasswordInteractor::class.java.simpleName
 
-    interface OnProcessFinishedListener {
+    interface OnResponseListener {
         fun onError(msg: String)
         fun onSuccess(msg: String)
     }
 
-    fun send(email: String, mListener: OnProcessFinishedListener) {
-        Discount.getApis().forgotPassword(email).enqueue(object : Callback<AuthenticationResponse>{
-            override fun onResponse(call: Call<AuthenticationResponse>, response: Response<AuthenticationResponse>) {
+    fun send(email: String, mListener: OnResponseListener) {
+        Discount.getApis().forgotPassword(email).enqueue(object : Callback<AuthResponse>{
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
                 if (response.body()?.status?.equals(Constants.SUCCESS)!!) {
                     mListener.onSuccess(response.body()?.message!!)
@@ -32,7 +32,7 @@ class PasswordInteractor {
                 }
             }
 
-            override fun onFailure(call: Call<AuthenticationResponse>, t: Throwable) {
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 mListener.onError(t.localizedMessage)
                 MyLog.e(TAG,"Error: ",t)
             }

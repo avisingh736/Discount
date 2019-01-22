@@ -10,11 +10,10 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:background="@color/colorWhite">
             <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,11 +49,7 @@
                             android:layout_height="@dimen/dp_45"/>
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
-            <View
-                    android:background="@drawable/toolbar_drop_shadow"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_3"/>
-        </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvCategory"
                 android:overScrollMode="never"

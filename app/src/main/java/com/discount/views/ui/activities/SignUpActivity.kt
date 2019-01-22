@@ -3,10 +3,13 @@ package com.discount.views.ui.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.bumptech.glide.Glide
 import com.discount.R
 import com.discount.app.config.Constants
 import com.discount.interactors.SignUpInteractor
@@ -77,21 +80,23 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
                 llSelectImage.alpha = 0f
             } else {
                 llSelectImage.alpha = 1f
-                ivProfileImage.setImageURI(null)
+                ivProfileImage.setImageBitmap(null)
             }
         } else if (requestCode == Constants.CAPTURE_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 llSelectImage.alpha = 0f
             } else {
                 llSelectImage.alpha = 1f
-                ivProfileImage.setImageURI(null)
+                ivProfileImage.setImageBitmap(null)
             }
         } else if (requestCode == UCrop.REQUEST_CROP) {
             if (resultCode == RESULT_OK) {
-                ivProfileImage.setImageURI(UCrop.getOutput(data!!))
+                ivProfileImage.setImageBitmap(null)
+                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, UCrop.getOutput(data!!))
+                Glide.with(this).load(bitmap).into(ivProfileImage)
                 llSelectImage.alpha = 0f
             } else {
-                ivProfileImage.setImageURI(null)
+                ivProfileImage.setImageBitmap(null)
                 llSelectImage.alpha = 1f
             }
         }
