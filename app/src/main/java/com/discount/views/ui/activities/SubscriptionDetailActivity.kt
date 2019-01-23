@@ -13,4 +13,9 @@ class SubscriptionDetailActivity : AppCompatActivity() {
 
         ivGoToBack.setOnClickListener { finish() }
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.right_to_init,R.anim.init_to_right)
+    }
 }
