@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".views.ui.activities.ProfileActivity">
+        tools:context=".views.ui.activities.EditProfileActivity">
 
     <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarProfile"
@@ -61,7 +61,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     <ImageView
-                            android:id="@+id/ivEditProfile"
+                            android:visibility="invisible"
                             android:src="@drawable/ic_edit_user_ico"
                             android:padding="@dimen/dp_12"
                             android:layout_width="@dimen/dp_45"
@@ -73,12 +73,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_profile"/>
+    <include layout="@layout/content_edit_profile"/>
 
     <com.github.siyamed.shapeimageview.CircularImageView
-            android:id="@+id/ivProfileImage"
             app:layout_anchor="@id/frameBar"
             app:layout_anchorGravity="bottom|center_horizontal"
+            android:id="@+id/ivProfileImage"
             android:src="@drawable/slider_bg"
             app:siBorderColor="@color/colorWhite"
             android:layout_width="@dimen/dp_100"
@@ -88,4 +88,16 @@
             app:dependType="y"
             app:dependTargetY="-100dp"
             app:animation="@anim/scale"/>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabEditProfileImage"
+            app:layout_anchor="@id/ivProfileImage"
+            app:layout_anchorGravity="end|bottom"
+            android:layout_gravity="start|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photo_camera"
+            android:tint="@color/colorThemeRed"
+            app:fabCustomSize="@dimen/dp_25"
+            app:maxImageSize="@dimen/dp_15"
+            android:layout_margin="@dimen/dp_5"/>
 </android.support.design.widget.CoordinatorLayout>

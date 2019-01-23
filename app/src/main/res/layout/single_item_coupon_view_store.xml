@@ -28,6 +28,8 @@
             <com.github.siyamed.shapeimageview.CircularImageView
                     android:src="@drawable/slider_bg"
                     app:siRadius="@dimen/dp_20"
+                    app:siBorderWidth="@dimen/dp_1"
+                    app:siBorderColor="@color/colorWhite"
                     android:layout_width="@dimen/dp_45"
                     android:layout_height="@dimen/dp_45"/>
             <TextView

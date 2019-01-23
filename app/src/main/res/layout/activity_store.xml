@@ -46,8 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <fragment
-                    android:id="@+id/mapSupportFragment"
-                    class="com.google.android.gms.maps.SupportMapFragment"
+                    android:id="@+id/infoWindowMap"
+                    class="com.appolica.interactiveinfowindow.fragment.MapInfoWindowFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             <android.support.v7.widget.CardView

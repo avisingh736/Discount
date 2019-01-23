@@ -57,28 +57,33 @@
         <activity android:name=".views.ui.activities.SubscriptionActivity"/>
         <activity android:name=".views.ui.activities.AboutUsActivity"/>
         <activity android:name=".views.ui.activities.ContactUsActivity"/>
-
+        <activity
+                android:name=".views.ui.activities.EditProfileActivity"
+                android:theme="@style/AppTheme.Translucent"/>
+        <activity android:name=".views.ui.activities.CountryActivity"/>
 
         <provider
-        android:name=".app.providers.DiscountFileProvider"
-        android:authorities="${applicationId}.provider"
-        android:exported="false"
-        android:grantUriPermissions="true">
+                android:name=".app.providers.DiscountFileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
             <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths"/>
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths"/>
         </provider>
 
         <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="d19e3329a07135150b0258f0506a131fc6852914"/>
+                android:name="io.fabric.ApiKey"
+                android:value="d19e3329a07135150b0258f0506a131fc6852914"/>
         <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="@string/google_maps_api_kay"/>
+                android:name="com.google.android.geo.API_KEY"
+                android:value="@string/google_maps_api_kay"/>
         <meta-data
-        android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version"/>
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version"/>
 
+        <activity android:name=".views.ui.activities.SubscriptionDetailActivity">
+        </activity>
     </application>
 
 </manifest>

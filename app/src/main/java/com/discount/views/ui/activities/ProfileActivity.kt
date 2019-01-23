@@ -19,7 +19,8 @@ class ProfileActivity : AppCompatActivity(),BaseView {
     private val mPresenter = ProfilePresenter(this)
 
     override fun <T> navigateTo(clazz: Class<T>) {
-        //TODO: To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this,clazz))
+        overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,9 @@ class ProfileActivity : AppCompatActivity(),BaseView {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
         ivGoToBack.setOnClickListener { finish() }
+        ivEditProfile.setOnClickListener {
+            navigateTo(EditProfileActivity::class.java)
+        }
 
         btnLogout.setOnClickListener{
             val prefHelper = PrefHelper.instance

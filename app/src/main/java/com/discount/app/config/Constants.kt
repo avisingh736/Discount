@@ -28,6 +28,8 @@ class Constants {
          * */
         const val SUCCESS = "Success"
         const val FAIL = "Fail"
+        const val MALE = "male"
+        const val FEMALE = "female"
 
         /**
          *  Preferences constants

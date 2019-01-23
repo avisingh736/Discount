@@ -29,9 +29,11 @@ class ProfilePresenter(var mView: BaseView?) {
         val data = prefHelper?.getPref(Constants.USER_DETAILS,"")
         val userDetails = Gson().fromJson(data,UserDetail::class.java)
         userDetails?.run {
+            Glide.with(mView as Context).load(profileImage).into(profile.ivProfileImage)
             profile.tvFirstName.text = firstName
             profile.tvLastName.text = lastName
-            Glide.with(mView as Context).load(profileImage).into(profile.ivProfileImage)
+            profile.tvEmailId.text = email
+            this
         }
     }
 

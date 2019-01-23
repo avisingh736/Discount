@@ -5,11 +5,15 @@
         android:layout_height="@dimen/dp_180"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardCornerRadius="@dimen/dp_8">
+    <com.github.siyamed.shapeimageview.RoundedImageView
+            android:src="@drawable/bg_subscription"
+            app:siRadius="@dimen/dp_8"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     <LinearLayout
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:paddingStart="@dimen/dp_10"
             android:paddingEnd="@dimen/dp_10"
             android:orientation="vertical">

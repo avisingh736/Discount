@@ -14,6 +14,7 @@
     <string name="about_discount">About Discount</string>
     <string name="contact_us">Contact Us</string>
     <string name="logout">Logout</string>
+    <string name="update">Update</string>
 
     <string name="email_id">Email Id</string>
     <string name="email_address">Email address</string>
@@ -34,11 +35,14 @@
     <string name="details">Details</string>
     <string name="redeem">Redeem</string>
     <string name="submit">Submit</string>
+    <string name="country">Country</string>
+    <string name="search_country">Search Country</string>
 
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="phone_no">Phone Number</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <string name="done">Done</string>
     <string name="about_us">About Us</string>
@@ -58,6 +62,8 @@
     <string name="here">here</string>
     <string name="subject_">Subject*</string>
     <string name="message_">Message*</string>
+    <string name="your_currently">Your currently</string>
+    <string name="active">active</string>
 
     <string name="please_select_an_option">Please select an option</string>
     <string name="gallery">Gallery</string>
@@ -71,6 +77,13 @@
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="voucher_code_">Voucher code:</string>
     <string name="valid_till">Valid till: 16/01/2019</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="purchase_date">Purchase Date</string>
+    <string name="ends_in">Ends In</string>
+    <string name="next_bill_date">Next Bill Date</string>
+    <string name="coupons_can_be_redeemed">Coupons  can be redeemed</string>
+    <string name="stop_recurring">Stop Recurring</string>
 
     <!-- Alerts on the app-->
     <string name="please_enter_email_id">Please enter email id</string>
@@ -108,11 +121,12 @@
     <string name="world">World</string>
     <string name="devs_mail">devs@mail.com</string>
     <string name="dob">12/11/1990</string>
-    <string name="male">Male</string>
     <string name="mn">+1&#8211;7879464523</string>
     <string name="silver_plan">Silver Plan</string>
     <string name="l5">$250/</string>
     <string name="three_months">3 month</string>
+    <string name="l6">10</string>
+    <string name="l7">90 Days</string>
     <string name="coupons_can_be_redeemed_">Coupons can be redeemed: 10</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -1,18 +1,20 @@
 package com.discount.views.ui.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
+import com.appolica.interactiveinfowindow.InfoWindowManager
+import com.appolica.interactiveinfowindow.fragment.MapInfoWindowFragment
 import com.discount.R
 import com.discount.presenters.StorePresenter
 import com.discount.views.DiscountView
-import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_store.*
 
 
 class StoreActivity :DiscountView, AppCompatActivity() {
-    private val mPresenter = StorePresenter(this)
+    private var mPresenter: StorePresenter? = null
+    private var infoWindowManager: InfoWindowManager? = null
 
     override fun onErrorOrInvalid(msg: String) {
         Snackbar.make(rootLayoutStore,msg, Snackbar.LENGTH_SHORT).show()
@@ -36,8 +38,12 @@ class StoreActivity :DiscountView, AppCompatActivity() {
         setContentView(R.layout.activity_store)
 
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.mapSupportFragment) as SupportMapFragment?
+            .findFragmentById(R.id.infoWindowMap) as MapInfoWindowFragment?
+        infoWindowManager = mapFragment?.infoWindowManager()
+        infoWindowManager?.setHideOnFling(true)
+        mPresenter = StorePresenter(this,infoWindowManager)
         mapFragment?.getMapAsync(mPresenter)
+        infoWindowManager?.setWindowShowListener(mPresenter)
 
         ivGoToBack.setOnClickListener { finish() }
     }
@@ -49,6 +55,6 @@ class StoreActivity :DiscountView, AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.onDestroy()
+        mPresenter?.onDestroy()
     }
 }

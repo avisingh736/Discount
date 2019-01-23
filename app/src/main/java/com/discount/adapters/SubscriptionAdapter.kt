@@ -1,11 +1,13 @@
 package com.discount.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.discount.R
+import com.discount.views.ui.activities.SubscriptionDetailActivity
 
 /**
  * Created by Avinash Kumar on 15/1/19.
@@ -27,5 +29,9 @@ class SubscriptionAdapter(var mContext: Context): RecyclerView.Adapter<Subscript
     }
 
 
-    class CouponViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class CouponViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.setOnClickListener { mContext.startActivity(Intent(mContext,SubscriptionDetailActivity::class.java))}
+        }
+    }
 }
