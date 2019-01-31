@@ -53,6 +53,8 @@ class HomePresenter(var mHomeView: HomeView?, var mInteractor: HomeInteractor): 
                         if (location != null) {
                             mLocation = location
                             MyLog.d(TAG,"Successful location task: Lat=${location.latitude} Lng=${location.longitude}")
+                            Discount.getSession().latitude = location.latitude.toString()
+                            Discount.getSession().longitude = location.longitude.toString()
                             getCompleteAddress(location)
                             getCouponList(location)
                         } else {

@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.discount.R
 import com.discount.app.config.Constants
+import com.discount.app.utils.MyLog
 import com.discount.models.Coupon
 import com.discount.views.ui.activities.CouponActivity
 import com.discount.views.ui.activities.CouponDetailActivity
@@ -32,7 +33,7 @@ class StoreCouponAdapter(var mContext: Context, var coupons: MutableList<Coupon>
     }
 
     override fun onBindViewHolder(holder: CouponViewHolder, position: Int) {
-        Glide.with(mContext).load(coupons[position].couponImage).into(holder.ivCouponImage)
+        Glide.with(mContext).load(coupons[position].storeCouponImage).into(holder.ivStoreCouponImage)
         holder.tvCouponTitle.text = coupons[position].title
         holder.tvVoucherCode.text = coupons[position].voucherCode
         holder.tvValidDate.text = coupons[position].validDate
@@ -40,7 +41,7 @@ class StoreCouponAdapter(var mContext: Context, var coupons: MutableList<Coupon>
     }
 
     inner class CouponViewHolder(itemView: View): RecyclerView.ViewHolder(itemView),View.OnClickListener {
-        val ivCouponImage = itemView.findViewById<ImageView>(R.id.ivCouponImage)!!
+        val ivStoreCouponImage = itemView.findViewById<ImageView>(R.id.ivStoreCouponImage)!!
         val tvCouponTitle = itemView.findViewById<TextView>(R.id.tvCouponTitle)!!
         val tvVoucherCode = itemView.findViewById<TextView>(R.id.tvVoucherCode)!!
         val tvValidDate = itemView.findViewById<TextView>(R.id.tvValidDate)!!

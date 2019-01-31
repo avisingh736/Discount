@@ -98,7 +98,7 @@
                                     android:fontFamily="@font/poppins_light"
                                     android:textColor="@color/colorText"
                                     android:layout_weight="1"
-                                    android:maxLines="1"
+                                    android:maxLines="2"
                                     android:ellipsize="end"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"/>

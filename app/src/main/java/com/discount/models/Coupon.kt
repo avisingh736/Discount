@@ -22,5 +22,6 @@ data class Coupon(
     @SerializedName("longitude") var longitude: String,
     @SerializedName("category") var category: String,
     @SerializedName("image") var couponImage: String,
+    @SerializedName("couponImage") var storeCouponImage: String,
     @SerializedName("distance_in_km") var distanceInKm: String
 ): Serializable
