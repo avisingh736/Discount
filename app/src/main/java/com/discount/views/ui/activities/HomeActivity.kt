@@ -1,6 +1,7 @@
 package com.discount.views.ui.activities
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.internal.NavigationMenuView
 import android.support.design.widget.AppBarLayout
@@ -11,17 +12,21 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.discount.R
 import com.discount.adapters.HomeCouponAdapter
 import com.discount.app.Discount
+import com.discount.app.config.Constants
 import com.discount.app.utils.DividerItemDecoration
 import com.discount.app.utils.MyUtils
 import com.discount.app.utils.GridSpacingItemDecoration
+import com.discount.app.utils.MyLog
 import com.discount.interactors.HomeInteractor
+import com.discount.models.Coupon
 import com.discount.presenters.HomePresenter
-import com.discount.views.DiscountView
+import com.discount.views.HomeView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.content_home.*
@@ -31,9 +36,12 @@ import kotlinx.android.synthetic.main.content_home.*
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, DiscountView {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HomeView {
+    private val TAG: String = HomeActivity::class.java.simpleName
 
     private val mHomePresenter = HomePresenter(this, HomeInteractor())
+    private var mCouponAdapter: HomeCouponAdapter? = null
+    private var coupons = mutableListOf<Coupon>()
 
     override fun onErrorOrInvalid(msg: String) {
         Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
@@ -44,11 +52,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun progress(flag: Boolean) {
-        //TODO: To change body of created functions use File | Settings | File Templates.
+        progressBar.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
@@ -88,14 +98,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         })
+        mHomePresenter.requestForLocationAccess()
 
         goForCoupon.setOnClickListener { navigateTo(CouponActivity::class.java) }
 
         rvHomeCouponsHere.layoutManager = GridLayoutManager(this, 2)
         rvHomeCouponsHere.addItemDecoration(GridSpacingItemDecoration(2,Discount.dpToPx(this,5f),true))
-        rvHomeCouponsHere.adapter = HomeCouponAdapter(this)
+        mCouponAdapter = HomeCouponAdapter(this,coupons)
+        rvHomeCouponsHere.adapter =  mCouponAdapter
 
-        mHomePresenter.studentDialogStatus()
+        Log.d(TAG,"StudentId: ${Discount.getSession().studentId} ${Discount.getSession().studentId.isEmpty()}")
+        if (Discount.getSession().studentId.isEmpty())
+            mHomePresenter.studentDialogStatus()
     }
 
     override fun onBackPressed() {
@@ -112,38 +126,35 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_home -> {
                 // Handle the camera action
             }
-            R.id.nav_coupon -> {
-                startActivity(Intent(this,CouponActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_category -> {
-                startActivity(Intent(this,CategoryActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_store -> {
-                startActivity(Intent(this,StoreActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_my_account -> {
-                startActivity(Intent(this,ProfileActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_subscription -> {
-                startActivity(Intent(this,SubscriptionActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_about_discount -> {
-                startActivity(Intent(this,AboutUsActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
-            R.id.nav_contact_us -> {
-                startActivity(Intent(this,ContactUsActivity::class.java))
-                overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
-            }
+            R.id.nav_coupon -> navigateTo(CouponActivity::class.java)
+            R.id.nav_category -> navigateTo(CategoryActivity::class.java)
+            R.id.nav_store -> navigateTo(StoreActivity::class.java)
+            R.id.nav_my_account -> navigateTo(ProfileActivity::class.java)
+            R.id.nav_subscription -> navigateTo(SubscriptionActivity::class.java)
+            R.id.nav_about_discount -> navigateTo(AboutUsActivity::class.java)
+            R.id.nav_contact_us -> navigateTo(ContactUsActivity::class.java)
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.LOCATION_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mHomePresenter.getLastKnownLocation()
+            } else {
+                mHomePresenter.requestForLocationAccess()
+            }
+        }
+    }
+
+    override fun onCouponSuccess(coupons: MutableList<Coupon>) {
+        this.coupons.clear()
+        this.coupons.addAll(coupons)
+        mCouponAdapter?.notifyDataSetChanged()
+        MyLog.i(TAG,"Coupon list size : ${coupons.size}")
     }
 
     override fun onDestroy() {

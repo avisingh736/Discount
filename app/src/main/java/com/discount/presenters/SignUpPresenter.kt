@@ -164,7 +164,7 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
             }
         } else if (requestCode == Constants.CAPTURE_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
-                //data.data = getImageUri((mDiscountView as Context),data?.extras.get("data") as Bitmap)
+                //data.data = getImageUri((mHomeView as Context),data?.extras.get("data") as Bitmap)
                 val options = UCrop.Options()
                 options.setCompressionQuality(100)
                 options.setMaxBitmapSize(10000)

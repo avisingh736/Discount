@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/rootLayoutStore"
         tools:context=".views.ui.activities.StoreActivity">
     <LinearLayout
@@ -57,35 +58,56 @@
                     android:layout_marginEnd="@dimen/dp_20"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_45">
-                <LinearLayout
+                <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                    <ImageView
-                            android:src="@drawable/ic_map_location_pin_ico"
-                            android:padding="@dimen/dp_5"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="@dimen/dp_30"
-                            android:layout_height="@dimen/dp_30"/>
-                    <TextView
-                            android:id="@+id/tvAddress"
-                            android:text="@string/l2"
-                            android:textSize="@dimen/sp_14"
-                            android:paddingStart="@dimen/dp_0"
-                            android:paddingRight="@dimen/dp_0"
-                            android:paddingEnd="@dimen/dp_10"
-                            android:paddingLeft="@dimen/dp_10"
-                            android:layout_gravity="center_vertical"
-                            android:paddingTop="@dimen/dp_3"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textColor="@color/colorText"
-                            android:layout_weight="1"
-                            android:maxLines="1"
-                            android:ellipsize="end"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
+                    <fragment
+                            android:id="@+id/place_autocomplete_fragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                            />
+                    <LinearLayout
+                            android:background="@color/colorWhite"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <ImageView
+                                android:src="@drawable/ic_map_location_pin_ico"
+                                android:padding="@dimen/dp_5"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"/>
+                        <TextView
+                                android:id="@+id/tvPlaceAddress"
+                                android:text="@string/l2"
+                                android:textSize="@dimen/sp_14"
+                                android:paddingStart="@dimen/dp_0"
+                                android:paddingRight="@dimen/dp_0"
+                                android:paddingEnd="@dimen/dp_10"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:layout_gravity="center_vertical"
+                                android:paddingTop="@dimen/dp_3"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/colorText"
+                                android:layout_weight="1"
+                                android:maxLines="1"
+                                android:ellipsize="end"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
         </FrameLayout>
     </LinearLayout>
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

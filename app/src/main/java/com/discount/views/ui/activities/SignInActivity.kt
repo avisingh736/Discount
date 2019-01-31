@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
 import com.discount.R
+import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
 import com.discount.app.utils.RememberLestener
 import com.discount.interactors.SignInInteractor
@@ -21,8 +22,10 @@ class SignInActivity : AppCompatActivity(),DiscountView, RememberLestener {
     /**
      * This method will navigate to SignUpActivity
      * */
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         if (clazz == HomeActivity::class.java) finish()
     }

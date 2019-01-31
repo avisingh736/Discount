@@ -30,7 +30,7 @@ class MyLog {
             if (isLogEnable) Log.e(tag,msg)
         }
 
-        fun e(tag: String,msg: String,t:Throwable) {
+        fun e(tag: String,msg: String,t: Throwable) {
             if (isLogEnable) Log.e(tag,msg,t)
         }
     }

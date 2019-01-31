@@ -26,6 +26,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
             <com.github.siyamed.shapeimageview.CircularImageView
+                    android:id="@+id/ivCouponImage"
                     android:src="@drawable/slider_bg"
                     app:siRadius="@dimen/dp_20"
                     app:siBorderWidth="@dimen/dp_1"
@@ -33,6 +34,7 @@
                     android:layout_width="@dimen/dp_45"
                     android:layout_height="@dimen/dp_45"/>
             <TextView
+                    android:id="@+id/tvCouponTitle"
                     android:text="@string/l1"
                     android:paddingStart="@dimen/dp_0"
                     android:paddingEnd="@dimen/dp_0"
@@ -62,6 +64,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <TextView
+                        android:id="@+id/tvVoucherCode"
                         android:text="@string/l3"
                         android:paddingStart="@dimen/dp_5"
                         android:paddingEnd="@dimen/dp_5"
@@ -80,7 +83,19 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                 <TextView
-                        android:text="@string/valid_till"
+                        android:text="@string/valid_till_"
+                        android:paddingStart="@dimen/dp_5"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_2"
+                        android:paddingBottom="@dimen/dp_2"
+                        android:textSize="@dimen/sp_10"
+                        android:maxLines="1"
+                        android:textColor="@color/colorText"
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/tvValidDate"
                         android:paddingStart="@dimen/dp_5"
                         android:paddingEnd="@dimen/dp_5"
                         android:paddingTop="@dimen/dp_2"
@@ -98,6 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_2"/>
             <TextView
+                    android:id="@+id/tvCouponDescription"
                     android:text="@string/l2"
                     android:paddingStart="@dimen/dp_5"
                     android:paddingEnd="@dimen/dp_5"

@@ -10,6 +10,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
         <ImageView
+                android:id="@+id/ivCouponImage"
                 android:src="@drawable/demo"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
@@ -23,6 +24,7 @@
                 android:paddingBottom="@dimen/dp_0"
                 android:orientation="vertical">
             <TextView
+                    android:id="@+id/tvCouponTitle"
                     android:text="@string/please_select_an_option"
                     android:textSize="@dimen/sp_12"
                     android:gravity="center"
@@ -31,6 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             <TextView
+                    android:id="@+id/tvCouponDescription"
                     android:text="@string/l2"
                     android:textSize="@dimen/sp_9"
                     android:paddingStart="@dimen/dp_10"

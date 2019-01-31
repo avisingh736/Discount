@@ -13,8 +13,10 @@ import com.discount.views.BaseView
 class SplashActivity : AppCompatActivity(),BaseView {
     private val mSplashPresenter = SplashPresenter(this)
 
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         finish()
     }

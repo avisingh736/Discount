@@ -3,7 +3,6 @@ package com.discount.views.ui.activities
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.Snackbar
@@ -28,13 +27,14 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
         else progressBar.visibility = View.GONE
     }
 
-    override fun <T> navigateTo(clazz: Class<T>) {
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
         /**
          * This method will navigate to home
          * */
         val mIntent = Intent(this,clazz).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
         startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }

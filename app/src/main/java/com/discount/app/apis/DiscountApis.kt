@@ -1,8 +1,7 @@
 package com.discount.app.apis
 
 import com.discount.app.config.Constants
-import com.discount.models.AuthResponse
-import com.discount.models.UniversityResponse
+import com.discount.models.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -45,14 +44,51 @@ interface DiscountApis {
     ): Call<AuthResponse>
 
     @GET(Constants.UNIVERSITY_LIST)
-    fun getUniversityList(@Header("auth_token") authToken: String
+    fun getUniversityList(@Header(Constants.AUTH_TOKEN) authToken: String
     ): Call<UniversityResponse>
 
     @FormUrlEncoded
     @POST(Constants.ADD_USER_UNIVERSITY)
     fun addUserUniversity(
-        @Header("auth_token") authToken: String,
+        @Header(Constants.AUTH_TOKEN) authToken: String,
         @Field("university_name") universityName: String,
         @Field("student_id") studentId: String
     ): Call<UniversityResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.COUPON_LIST)
+    fun getCouponList(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("latitude") latitude: String,
+        @Field("longitude") longitude: String,
+        @Field("search") search: String = "",
+        @Field("limit") limit: String = "10",
+        @Field("offset") offset: String = "0"
+    ): Call<CouponResponse>
+
+    @FormUrlEncoded
+    @GET(Constants.CATEGORY_LIST)
+    fun getCategories(
+        @Header(Constants.AUTH_TOKEN) authToken: String
+    ): Call<CategoryResponse>
+
+    @GET(Constants.STORE_LIST)
+    fun getStores(
+        @Header(Constants.AUTH_TOKEN) authToken: String
+    ): Call<StoreResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.COUPON_INFO)
+    fun getCouponInfo(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("couponId") couponId: String
+    ): Call<CouponInfoResponse>
+
+
+    @FormUrlEncoded
+    @POST(Constants.STORE_INFO)
+    fun getStoreInfo(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("storeId") storeId: String
+    ): Call<StoreInfoResponse>
 }

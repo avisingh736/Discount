@@ -24,11 +24,15 @@ class PasswordInteractor {
     fun send(email: String, mListener: OnResponseListener) {
         Discount.getApis().forgotPassword(email).enqueue(object : Callback<AuthResponse>{
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                MyLog.i(TAG,"msg ${response.body()?.message}")
-                if (response.body()?.status?.equals(Constants.SUCCESS)!!) {
-                    mListener.onSuccess(response.body()?.message!!)
+                MyLog.i(TAG,"Response ${response.isSuccessful}")
+                if (response.isSuccessful) {
+                    if (response.body()?.status?.equals(Constants.KEY_SUCCESS)!!) {
+                        mListener.onSuccess(response.body()?.message!!)
+                    } else {
+                        mListener.onError(response.body()?.message!!)
+                    }
                 } else {
-                    mListener.onError(response.body()?.message!!)
+                    mListener.onError("${response.message()} ${response.code()}")
                 }
             }
 

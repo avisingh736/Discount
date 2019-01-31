@@ -28,6 +28,12 @@ data class UserDetail(
     @SerializedName("device_token") var deviceToken: String,
     @SerializedName("device_type") var deviceType: String,
     @SerializedName("auth_token") var authToken: String,
+    @SerializedName("university_id") var universityId: String,
+    @SerializedName("student_id") var studentId: String,
+    @SerializedName("gender") var gender: String,
+    @SerializedName("date_of_birth") var dateOfBirth: String,
+    @SerializedName("phoneNumber") var phoneNumber: String,
+    @SerializedName("country_code") var countryCode: String,
     @SerializedName("created_on") var createdOn: String,
     @SerializedName("updated_on") var updatedOn: String
 ): Serializable

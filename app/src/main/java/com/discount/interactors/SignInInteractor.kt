@@ -26,21 +26,25 @@ class SignInInteractor {
         Discount.getApis().login(email,password,deviceType).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
-                response.body()?.run {
-                    if (status == Constants.SUCCESS) {
-                        val prefHelper = PrefHelper.instance
-                        prefHelper?.run {
-                            savePref(Constants.IS_USER_LOGGED_IN,true)
-                            savePref(Constants.USER_DETAILS,PrefHelper.encodeProfile(userDetail))
-                            if (getPref(Constants.REMEMBER_ME,false)) {
-                                savePref(Constants.EMAIL,email)
-                                savePref(Constants.PASSWORD,password)
+                if (response.isSuccessful) {
+                    response.body()?.run {
+                        if (status == Constants.KEY_SUCCESS) {
+                            val prefHelper = PrefHelper.instance
+                            prefHelper?.run {
+                                savePref(Constants.IS_USER_LOGGED_IN,true)
+                                savePref(Constants.USER_DETAILS,PrefHelper.encodeProfile(userDetail))
+                                if (getPref(Constants.REMEMBER_ME,false)) {
+                                    savePref(Constants.EMAIL,email)
+                                    savePref(Constants.PASSWORD,password)
+                                }
                             }
+                            mListener.onSuccess(message)
+                        } else {
+                            mListener.onError(message)
                         }
-                        mListener.onSuccess(message)
-                    } else {
-                        mListener.onError(message)
                     }
+                } else {
+                    mListener.onError("${response.message()} ${response.code()}")
                 }
             }
 

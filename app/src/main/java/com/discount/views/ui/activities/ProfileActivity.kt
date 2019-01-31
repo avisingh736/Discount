@@ -2,7 +2,6 @@ package com.discount.views.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.discount.R
@@ -18,8 +17,10 @@ class ProfileActivity : AppCompatActivity(),BaseView {
 
     private val mPresenter = ProfilePresenter(this)
 
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 

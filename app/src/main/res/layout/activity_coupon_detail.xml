@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/alertRootLayoutCouponDetail"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".views.ui.activities.CouponDetailActivity">
     <LinearLayout
@@ -49,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <LinearLayout
+                        android:id="@+id/llStoreLayout"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_100"
                         android:paddingStart="@dimen/dp_10"
@@ -56,6 +58,7 @@
                         android:background="@drawable/details_bg_img"
                         android:orientation="horizontal">
                     <com.github.siyamed.shapeimageview.CircularImageView
+                            android:id="@+id/ivStoreImage"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/demo"
                             android:layout_width="@dimen/dp_78"
@@ -67,6 +70,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
                         <TextView
+                                android:id="@+id/tvStoreTitle"
                                 android:text="@string/l1"
                                 android:paddingStart="@dimen/dp_10"
                                 android:paddingEnd="@dimen/dp_10"
@@ -87,7 +91,7 @@
                                     android:layout_width="@dimen/dp_40"
                                     android:layout_height="@dimen/dp_40"/>
                             <TextView
-                                    android:id="@+id/tvAddress"
+                                    android:id="@+id/tvStoreAddress"
                                     android:text="@string/l2"
                                     android:textSize="@dimen/sp_12"
                                     android:gravity="center_vertical"
@@ -124,6 +128,7 @@
                             android:paddingEnd="@dimen/dp_10"
                             android:orientation="horizontal">
                         <com.github.siyamed.shapeimageview.CircularImageView
+                                android:id="@+id/ivCouponImage"
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/demo"
                                 android:layout_width="@dimen/dp_78"
@@ -136,6 +141,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp_80">
                             <TextView
+                                    android:id="@+id/tvCouponTitle"
                                     android:text="@string/l1"
                                     android:paddingTop="@dimen/dp_2"
                                     android:paddingBottom="@dimen/dp_2"
@@ -165,6 +171,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"/>
                                     <TextView
+                                            android:id="@+id/tvVoucherCode"
                                             android:text="@string/l3"
                                             android:paddingStart="@dimen/dp_5"
                                             android:paddingEnd="@dimen/dp_5"
@@ -182,17 +189,35 @@
                                         android:layout_height="match_parent"
                                         android:gravity="center_vertical"
                                         android:orientation="vertical">
-                                    <TextView
-                                            android:text="@string/valid_till"
-                                            android:paddingTop="@dimen/dp_2"
-                                            android:paddingBottom="@dimen/dp_2"
-                                            android:textSize="@dimen/sp_12"
-                                            android:maxLines="1"
-                                            android:textColor="@color/colorText"
-                                            android:fontFamily="@font/poppins_light"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="0dp"
-                                            android:layout_weight="1"/>
+                                    <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:orientation="horizontal">
+                                        <TextView
+                                                android:text="@string/valid_till_"
+                                                android:paddingTop="@dimen/dp_2"
+                                                android:paddingBottom="@dimen/dp_2"
+                                                android:textSize="@dimen/sp_12"
+                                                android:maxLines="1"
+                                                android:textColor="@color/colorText"
+                                                android:fontFamily="@font/poppins_light"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"/>
+                                        <TextView
+                                                android:id="@+id/tvValidDate"
+                                                android:text="@string/dob"
+                                                android:paddingStart="@dimen/dp_5"
+                                                android:paddingEnd="@dimen/dp_5"
+                                                android:paddingTop="@dimen/dp_2"
+                                                android:paddingBottom="@dimen/dp_2"
+                                                android:textSize="@dimen/sp_12"
+                                                android:maxLines="1"
+                                                android:textColor="@color/colorText"
+                                                android:fontFamily="@font/poppins_light"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"/>
+                                    </LinearLayout>
                                     <View
                                             android:background="@color/colorGray"
                                             android:layout_width="match_parent"
@@ -249,4 +274,13 @@
             android:background="@drawable/meterial_button_red"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_55"/>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

@@ -4,11 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.appolica.interactiveinfowindow.InfoWindowManager
 import com.appolica.interactiveinfowindow.fragment.MapInfoWindowFragment
 import com.discount.R
+import com.discount.app.Discount
+import com.discount.app.config.Constants
+import com.discount.interactors.StoreInteractor
 import com.discount.presenters.StorePresenter
 import com.discount.views.DiscountView
+import com.google.android.gms.location.places.AutocompleteFilter
 import kotlinx.android.synthetic.main.activity_store.*
 
 
@@ -25,11 +30,13 @@ class StoreActivity :DiscountView, AppCompatActivity() {
     }
 
     override fun progress(flag: Boolean) {
-        //ToDo: Needs implementation
+        progressBar.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
@@ -41,11 +48,13 @@ class StoreActivity :DiscountView, AppCompatActivity() {
             .findFragmentById(R.id.infoWindowMap) as MapInfoWindowFragment?
         infoWindowManager = mapFragment?.infoWindowManager()
         infoWindowManager?.setHideOnFling(true)
-        mPresenter = StorePresenter(this,infoWindowManager)
+        mPresenter = StorePresenter(this,infoWindowManager, StoreInteractor())
         mapFragment?.getMapAsync(mPresenter)
         infoWindowManager?.setWindowShowListener(mPresenter)
-
         ivGoToBack.setOnClickListener { finish() }
+        tvPlaceAddress.text = Discount.getSession().address
+
+        mPresenter?.getStoreList()
     }
 
     override fun finish() {
@@ -57,4 +66,5 @@ class StoreActivity :DiscountView, AppCompatActivity() {
         super.onDestroy()
         mPresenter?.onDestroy()
     }
+
 }

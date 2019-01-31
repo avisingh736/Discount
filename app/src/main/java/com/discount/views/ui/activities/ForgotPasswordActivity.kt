@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
 import com.discount.R
+import com.discount.app.config.Constants
 import com.discount.interactors.PasswordInteractor
 import com.discount.presenters.PasswordPresenter
 import com.discount.views.DiscountView
@@ -15,8 +16,10 @@ class ForgotPasswordActivity : AppCompatActivity() , DiscountView{
 
     private val mPasswordPresenter = PasswordPresenter(this,PasswordInteractor())
 
-    override fun <T> navigateTo(clazz: Class<T>) {
-        startActivity(Intent(this,clazz))
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 

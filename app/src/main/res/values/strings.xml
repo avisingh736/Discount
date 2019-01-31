@@ -76,7 +76,7 @@
     <string name="coupon_info">Coupon Info</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="voucher_code_">Voucher code:</string>
-    <string name="valid_till">Valid till: 16/01/2019</string>
+    <string name="valid_till_">Valid till:</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="purchase_date">Purchase Date</string>
@@ -111,6 +111,7 @@
     <string name="know_more">Know  More</string>
     <string name="please_select_university">Please select university</string>
     <string name="please_enter_student_id">Please enter student id</string>
+    <string name="something_went_wrong">Something went wrong…</string>
 
     <!-- Lorem Ipsum-->
     <string name="l1">What is Lorem Ipsum?</string>
