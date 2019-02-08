@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/alertRootLayoutCouponFilter"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".views.ui.activities.CategoryActivity">
     <LinearLayout
@@ -68,4 +69,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
     </LinearLayout>
+    <TextView
+            android:id="@+id/tvNoDataAlert"
+            android:text="@string/no_data_found"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

@@ -18,16 +18,20 @@ import retrofit2.Response
 class StoreDetailPresenter(var mDiscountView: DiscountView?) {
     private var TAG = StoreDetailPresenter::class.java.simpleName
 
-    fun getStoreInfo(storeId: String) {
+    fun getStoreInfo(storeId: String,limit: String = "6", offset: String = "0") {
         mDiscountView?.progress(true)
-        Discount.getApis().getStoreInfo(Discount.getSession().authToken,storeId).enqueue(object : Callback<StoreInfoResponse>{
+        Discount.getApis().getStoreInfo(Discount.getSession().authToken,storeId,limit,offset).enqueue(object : Callback<StoreInfoResponse>{
             override fun onResponse(call: Call<StoreInfoResponse>, response: Response<StoreInfoResponse>) {
                 mDiscountView?.progress(false)
                 MyLog.i(TAG,"onResponse ${response.isSuccessful}")
                 if(response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         val result: StoreInfoResponse.Result = response.body()?.result!!
-                        (mDiscountView as StoreDetailActivity).onStoreInfo(result.storeInfo,result.couponList.toMutableList())
+                        if (offset.toInt() == 0) {
+                            (mDiscountView as StoreDetailActivity).onStoreInfo(result.storeInfo,result.couponList.toMutableList())
+                        } else if (offset.toInt() > 0) {
+                            (mDiscountView as StoreDetailActivity).onStoreInfo(null,result.couponList.toMutableList())
+                        }
                     } else {
                         mDiscountView?.onErrorOrInvalid(response.body()?.message!!)
                     }

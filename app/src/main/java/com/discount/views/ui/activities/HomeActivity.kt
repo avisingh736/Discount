@@ -39,16 +39,18 @@ import kotlinx.android.synthetic.main.content_home.*
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HomeView {
     private val TAG: String = HomeActivity::class.java.simpleName
 
-    private val mHomePresenter = HomePresenter(this, HomeInteractor())
+    private val mHomePresenter = HomePresenter(this@HomeActivity, HomeInteractor())
     private var mCouponAdapter: HomeCouponAdapter? = null
     private var coupons = mutableListOf<Coupon>()
 
     override fun onErrorOrInvalid(msg: String) {
-        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
+        //ToDo: Remove Comment here
+        //Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(msg: String) {
-        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
+        //ToDo: Remove Comment here
+        //Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun progress(flag: Boolean) {
@@ -107,9 +109,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mCouponAdapter = HomeCouponAdapter(this,coupons)
         rvHomeCouponsHere.adapter =  mCouponAdapter
 
-        Log.d(TAG,"StudentId: ${Discount.getSession().studentId} ${Discount.getSession().studentId.isEmpty()}")
-        if (Discount.getSession().studentId.isEmpty())
-            mHomePresenter.studentDialogStatus()
+        //ToDo: Remove Comment here
+        /*if (Discount.getSession().studentId.isEmpty())
+            mHomePresenter.studentDialogStatus()*/
+
     }
 
     override fun onBackPressed() {
@@ -154,7 +157,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         this.coupons.clear()
         this.coupons.addAll(coupons)
         mCouponAdapter?.notifyDataSetChanged()
+        mCouponAdapter?.notifyDataSetChanged()
         MyLog.i(TAG,"Coupon list size : ${coupons.size}")
+
+        if (this.coupons.size == 0) {
+            tvNoDataAlert.visibility = View.VISIBLE
+        } else {
+            tvNoDataAlert.visibility = View.GONE
+        }
     }
 
     override fun onDestroy() {

@@ -8,6 +8,11 @@ package com.discount.app.config
 class Constants {
     companion object {
         /**
+         *  Retrofit constants
+         * */
+        const val CONNECTION_TIMEOUT: Long = 5*60
+        const val READ_TIMEOUT: Long = 5*60
+        /**
          * Urls below
          * */
         const val BASE_URL_DEVELOPMENT = "http://dev.mindiii.com/discount/api_v1/"
@@ -37,11 +42,14 @@ class Constants {
         const val KEY_FAIL = "Fail"
         const val MALE = "male"
         const val FEMALE = "female"
+        const val KEY_RESULT_EXTRA = "result_extra"
         const val KEY_BUNDLE_PARAM = "extra_data"
         const val KEY_COUPON_EXTRA = "coupon_extra"
         const val KEY_COUPON_INFO_EXTRA = "coupon_info_extra"
         const val KEY_STORE_EXTRA = "store_extra"
+        const val KEY_CATEGORY_EXTRA = "category_extra"
         const val KEY_FROM_WHERE = "from_where"
+        const val KEY_FROM_CATEGORY = "from_coupon_category"
         const val KEY_FROM_COUPON_INFO = "from_coupon_info"
         const val KEY_FROM_STORE_LIST = "from_store_list"
 
@@ -64,5 +72,6 @@ class Constants {
         const val STORAGE_PERMISSION = 1003
         const val LOCATION_PERMISSION = 1004
         const val PLACE_PICKER_REQUEST = 1005
+        const val COUPON_FILTER_REQUEST = 1006
     }
 }

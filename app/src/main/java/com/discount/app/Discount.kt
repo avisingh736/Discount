@@ -18,6 +18,7 @@ import io.fabric.sdk.android.Fabric
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -44,7 +45,10 @@ class Discount: Application() {
          * */
         private var retrofit: Retrofit?= null
         fun getApis(): DiscountApis {
-            val client = OkHttpClient.Builder().build()
+            val client = OkHttpClient.Builder()
+                .connectTimeout(Constants.CONNECTION_TIMEOUT,TimeUnit.SECONDS)
+                .readTimeout(Constants.READ_TIMEOUT,TimeUnit.SECONDS)
+                .build()
             if (retrofit == null) {
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -65,6 +69,13 @@ class Discount: Application() {
                 userDetail = Gson().fromJson(s, UserDetail::class.java)
             }
             return userDetail!!
+        }
+
+        /**
+         *  Remove current session on logout
+         * */
+        fun removeSession() {
+            userDetail = null
         }
 
         /**

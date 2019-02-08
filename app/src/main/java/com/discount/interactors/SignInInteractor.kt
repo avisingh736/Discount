@@ -32,6 +32,7 @@ class SignInInteractor {
                             val prefHelper = PrefHelper.instance
                             prefHelper?.run {
                                 savePref(Constants.IS_USER_LOGGED_IN,true)
+                                remove(Constants.USER_DETAILS)
                                 savePref(Constants.USER_DETAILS,PrefHelper.encodeProfile(userDetail))
                                 if (getPref(Constants.REMEMBER_ME,false)) {
                                     savePref(Constants.EMAIL,email)

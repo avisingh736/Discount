@@ -56,7 +56,6 @@
                 <com.github.siyamed.shapeimageview.CircularImageView
                         android:id="@+id/ivStoreImage"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/demo"
                         android:layout_width="@dimen/dp_78"
                         android:layout_height="@dimen/dp_78"/>
                 <LinearLayout
@@ -67,7 +66,6 @@
                         android:layout_height="match_parent">
                     <TextView
                             android:id="@+id/tvStoreTitle"
-                            android:text="@string/l1"
                             android:paddingStart="@dimen/dp_10"
                             android:paddingEnd="@dimen/dp_10"
                             android:paddingTop="@dimen/dp_2"
@@ -88,7 +86,6 @@
                                 android:layout_height="@dimen/dp_40"/>
                         <TextView
                                 android:id="@+id/tvStoreAddress"
-                                android:text="@string/l2"
                                 android:textSize="@dimen/sp_12"
                                 android:gravity="center_vertical"
                                 android:fontFamily="@font/poppins_light"
@@ -130,14 +127,24 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
+    <TextView
+            android:id="@+id/tvNoDataAlert"
+            android:text="@string/no_data_found"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     <ProgressBar
             android:id="@+id/progressBar"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="parent"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

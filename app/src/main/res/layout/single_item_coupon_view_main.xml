@@ -13,6 +13,8 @@
                 android:src="@drawable/demo"
                 android:scaleType="centerCrop"
                 app:siRadius="@dimen/dp_8"
+                app:siBorderWidth="@dimen/dp_1"
+                app:siBorderColor="@color/colorWhite"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/dp_10"
                 android:layout_marginEnd="@dimen/dp_10"

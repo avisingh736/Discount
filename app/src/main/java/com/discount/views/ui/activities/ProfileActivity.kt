@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.discount.R
+import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.presenters.ProfilePresenter
@@ -35,6 +36,7 @@ class ProfileActivity : AppCompatActivity(),BaseView {
         }
 
         btnLogout.setOnClickListener{
+            Discount.removeSession()
             val prefHelper = PrefHelper.instance
             prefHelper?.run {
                 savePref(Constants.IS_USER_LOGGED_IN,false)

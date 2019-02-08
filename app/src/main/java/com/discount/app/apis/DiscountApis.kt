@@ -66,7 +66,6 @@ interface DiscountApis {
         @Field("offset") offset: String = "0"
     ): Call<CouponResponse>
 
-    @FormUrlEncoded
     @GET(Constants.CATEGORY_LIST)
     fun getCategories(
         @Header(Constants.AUTH_TOKEN) authToken: String
@@ -89,6 +88,8 @@ interface DiscountApis {
     @POST(Constants.STORE_INFO)
     fun getStoreInfo(
         @Header(Constants.AUTH_TOKEN) authToken: String,
-        @Field("storeId") storeId: String
+        @Field("storeId") storeId: String,
+        @Field("limit") limit: String = "6",
+        @Field("offset") offset: String = "0"
     ): Call<StoreInfoResponse>
 }

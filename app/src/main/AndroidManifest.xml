@@ -19,6 +19,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false" />
         <activity
                 android:name=".views.ui.activities.SplashActivity"
                 android:screenOrientation="portrait">
@@ -27,7 +30,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
+        </activity>v
         <activity
                 android:name=".views.ui.activities.SignInActivity"
                 android:screenOrientation="portrait"/>

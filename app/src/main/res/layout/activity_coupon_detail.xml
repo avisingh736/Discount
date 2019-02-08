@@ -60,7 +60,6 @@
                     <com.github.siyamed.shapeimageview.CircularImageView
                             android:id="@+id/ivStoreImage"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/demo"
                             android:layout_width="@dimen/dp_78"
                             android:layout_height="@dimen/dp_78"/>
                     <LinearLayout
@@ -71,7 +70,6 @@
                             android:layout_height="match_parent">
                         <TextView
                                 android:id="@+id/tvStoreTitle"
-                                android:text="@string/l1"
                                 android:paddingStart="@dimen/dp_10"
                                 android:paddingEnd="@dimen/dp_10"
                                 android:paddingTop="@dimen/dp_2"
@@ -92,7 +90,6 @@
                                     android:layout_height="@dimen/dp_40"/>
                             <TextView
                                     android:id="@+id/tvStoreAddress"
-                                    android:text="@string/l2"
                                     android:textSize="@dimen/sp_12"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/poppins_light"
@@ -130,7 +127,6 @@
                         <com.github.siyamed.shapeimageview.CircularImageView
                                 android:id="@+id/ivCouponImage"
                                 android:layout_gravity="center_vertical"
-                                android:src="@drawable/demo"
                                 android:layout_width="@dimen/dp_78"
                                 android:layout_height="@dimen/dp_78"/>
                         <LinearLayout
@@ -142,7 +138,6 @@
                                 android:layout_height="@dimen/dp_80">
                             <TextView
                                     android:id="@+id/tvCouponTitle"
-                                    android:text="@string/l1"
                                     android:paddingTop="@dimen/dp_2"
                                     android:paddingBottom="@dimen/dp_2"
                                     android:textSize="@dimen/sp_14"
@@ -172,7 +167,6 @@
                                             android:layout_height="wrap_content"/>
                                     <TextView
                                             android:id="@+id/tvVoucherCode"
-                                            android:text="@string/l3"
                                             android:paddingStart="@dimen/dp_5"
                                             android:paddingEnd="@dimen/dp_5"
                                             android:paddingTop="@dimen/dp_2"
@@ -206,7 +200,6 @@
                                                 android:layout_height="wrap_content"/>
                                         <TextView
                                                 android:id="@+id/tvValidDate"
-                                                android:text="@string/dob"
                                                 android:paddingStart="@dimen/dp_5"
                                                 android:paddingEnd="@dimen/dp_5"
                                                 android:paddingTop="@dimen/dp_2"
@@ -246,7 +239,6 @@
                             android:orientation="horizontal">
                         <TextView
                                 android:id="@+id/tvTermsAndConditions"
-                                android:text="@string/l4"
                                 android:paddingTop="@dimen/dp_5"
                                 android:paddingBottom="@dimen/dp_78"
                                 android:textSize="@dimen/sp_12"
@@ -279,8 +271,8 @@
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="parent"
-            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 </android.support.constraint.ConstraintLayout>

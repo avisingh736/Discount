@@ -1,6 +1,8 @@
 package com.discount.interactors
 
 import com.discount.app.Discount
+import com.discount.app.config.Constants
+import com.discount.app.utils.MyLog
 import com.discount.models.Coupon
 import com.discount.models.CouponResponse
 import retrofit2.Call
@@ -19,16 +21,30 @@ class CouponInteractor {
         fun progress(flag: Boolean)
         fun onError(msg: String)
     }
+    val TAG = CouponInteractor::class.java.simpleName
 
     fun getCouponListFromServer(latitude: String, longitude: String, search: String = "", limit: String = "10", offset: String = "0", mListener: OnResponseListener) {
+        mListener.progress(true)
         Discount.getApis().getCouponList(Discount.getSession().authToken,latitude,longitude,search,limit,offset).enqueue(object :
             Callback<CouponResponse>{
             override fun onResponse(call: Call<CouponResponse>, response: Response<CouponResponse>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                mListener.progress(false)
+                MyLog.d(TAG,"Response ${response.isSuccessful}")
+                if (response.isSuccessful) {
+                    if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
+                        val result: CouponResponse.Result = response.body()?.result!!
+                        mListener.onSuccessCouponList(result.couponList.toMutableList())
+                    } else {
+                        mListener.onError(response.body()?.message!!)
+                    }
+                } else {
+                    mListener.onError("${response.message()} ${response.code()}")
+                }
             }
 
             override fun onFailure(call: Call<CouponResponse>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                mListener.progress(false)
+                MyLog.e(TAG,"Error: ",t)
             }
         })
     }

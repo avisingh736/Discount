@@ -112,6 +112,7 @@
     <string name="please_select_university">Please select university</string>
     <string name="please_enter_student_id">Please enter student id</string>
     <string name="something_went_wrong">Something went wrong…</string>
+    <string name="no_data_found">No data found</string>
 
     <!-- Lorem Ipsum-->
     <string name="l1">What is Lorem Ipsum?</string>

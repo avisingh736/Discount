@@ -12,5 +12,6 @@ data class Category(
     @SerializedName("categoryId") var categoryId: String,
     @SerializedName("category_name") var categoryName: String,
     @SerializedName("created_on") var createdOn: String,
-    @SerializedName("image") var image: String
+    @SerializedName("image") var image: String,
+    var isSelected: Boolean = false
 ): Serializable
