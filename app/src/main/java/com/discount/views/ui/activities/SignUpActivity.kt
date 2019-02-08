@@ -23,8 +23,7 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
     private val mSignUpPresenter = SignUpPresenter(this, SignUpInteractor())
 
     override fun progress(flag: Boolean) {
-        if (flag) progressBar.visibility = View.VISIBLE
-        else progressBar.visibility = View.GONE
+        progressBar.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
     override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {

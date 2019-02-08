@@ -1,11 +1,33 @@
 package com.discount.views.ui.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.discount.R
+import com.discount.app.config.Constants
+import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_about_us.*
 
-class AboutUsActivity : AppCompatActivity() {
+class AboutUsActivity : AppCompatActivity(), DiscountView {
+    override fun onErrorOrInvalid(msg: String) {
+        //TODO("not implemented")
+    }
+
+    override fun onSuccess(msg: String) {
+        //TODO("not implemented")
+    }
+
+    override fun progress(flag: Boolean) {
+        progressBar.visibility = if (flag) View.VISIBLE else View.GONE
+    }
+
+    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
+        val mIntent = Intent(this,clazz)
+        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
+        startActivity(mIntent)
+        overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

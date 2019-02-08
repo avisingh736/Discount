@@ -42,7 +42,8 @@ import java.util.*
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpInteractor): SignUpInteractor.OnRegistrationFinishedListener {
+class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpInteractor):
+    SignUpInteractor.OnRegistrationFinishedListener {
     private val TAG = SignUpPresenter::class.java.simpleName
 
     private var mUri: Uri? = null

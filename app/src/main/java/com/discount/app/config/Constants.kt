@@ -32,8 +32,11 @@ class Constants {
         const val STORE_LIST = "store/getStoreList"  //GET
         const val COUPON_INFO = "coupon/couponInfo" //POST
         const val STORE_INFO = "store/storeInfo" //POST
-
-
+        const val MY_PROFILE = "user/getMyProfile" //GET
+        const val UPDATE_USER_PROFILE = "user/updateUserProfile" //POST
+        const val CHANGE_PASSWORD = "user/changePassword" //POST
+        const val CONTACT_US = "user/contactUs" //POST
+        const val SUBSCRIPTION_PLAN_LIST = "subscription/getUserSubscriptionPlanList" //GET
 
         /**
          * Keys below
@@ -52,7 +55,6 @@ class Constants {
         const val KEY_FROM_CATEGORY = "from_coupon_category"
         const val KEY_FROM_COUPON_INFO = "from_coupon_info"
         const val KEY_FROM_STORE_LIST = "from_store_list"
-
 
         /**
          *  Preferences constants
@@ -73,5 +75,6 @@ class Constants {
         const val LOCATION_PERMISSION = 1004
         const val PLACE_PICKER_REQUEST = 1005
         const val COUPON_FILTER_REQUEST = 1006
+        const val COUNTRY_REQUEST = 1007
     }
 }

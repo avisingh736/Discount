@@ -9,13 +9,12 @@ import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.presenters.ProfilePresenter
-import com.discount.views.BaseView
+import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.app_bar_profile.*
 import kotlinx.android.synthetic.main.content_profile.*
 
 
-class ProfileActivity : AppCompatActivity(),BaseView {
-
+class ProfileActivity : AppCompatActivity(),DiscountView {
     private val mPresenter = ProfilePresenter(this)
 
     override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
@@ -23,6 +22,18 @@ class ProfileActivity : AppCompatActivity(),BaseView {
         if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
         startActivity(mIntent)
         overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
+    }
+
+    override fun onErrorOrInvalid(msg: String) {
+        //TODO("not implemented")
+    }
+
+    override fun onSuccess(msg: String) {
+        //TODO("not implemented")
+    }
+
+    override fun progress(flag: Boolean) {
+        progressBar.visibility = if (flag) View.VISIBLE else View.GONE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,10 +60,10 @@ class ProfileActivity : AppCompatActivity(),BaseView {
             overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         }
 
-
         llChangePassword.setOnClickListener { mPresenter.showChangePasswordDialog() }
         mPresenter.onCreate(this)
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

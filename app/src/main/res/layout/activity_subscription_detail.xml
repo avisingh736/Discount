@@ -269,4 +269,11 @@
             android:layout_marginEnd="@dimen/dp_35"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_45"/>
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:theme="@style/AppTheme.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible" />
 </android.support.design.widget.CoordinatorLayout>

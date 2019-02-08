@@ -8,13 +8,13 @@ import android.view.View
 import com.discount.R
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
-import com.discount.app.utils.RememberLestener
+import com.discount.app.utils.listeners.RememberListener
 import com.discount.interactors.SignInInteractor
 import com.discount.presenters.SignInPresenter
 import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
-class SignInActivity : AppCompatActivity(),DiscountView, RememberLestener {
+class SignInActivity : AppCompatActivity(),DiscountView, RememberListener {
     val TAG = SignInActivity::class.java.simpleName
 
     private var mSignInPresenter: SignInPresenter = SignInPresenter(this, SignInInteractor(),this)

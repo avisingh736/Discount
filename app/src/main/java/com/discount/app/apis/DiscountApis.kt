@@ -92,4 +92,43 @@ interface DiscountApis {
         @Field("limit") limit: String = "6",
         @Field("offset") offset: String = "0"
     ): Call<StoreInfoResponse>
+
+    //ToDo: Model needs to be create for below
+
+    @GET(Constants.MY_PROFILE)
+    fun getMyProfile(@Header(Constants.AUTH_TOKEN) authToken: String)
+
+    @FormUrlEncoded
+    @POST(Constants.UPDATE_USER_PROFILE)
+    fun updateUserProfile(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("first_name") firstName: String,
+        @Field("last_name") lastName: String,
+        @Field("email") email: String,
+        @Field("phoneNumber") phoneNumber: String,
+        @Field("country_code") countryCode: String,
+        @Field("gender") gender: String,
+        @Field("date_of_birth") dateOfBirth: String
+    )
+
+    @FormUrlEncoded
+    @POST(Constants.CHANGE_PASSWORD)
+    fun changePassword(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("oldPassword") oldPassword: String,
+        @Field("newPassword") newPassword: String,
+        @Field("cPassword") cPassword: String
+    )
+
+    @FormUrlEncoded
+    @POST(Constants.CONTACT_US)
+    fun contactUs(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("subject") subject: String,
+        @Field("message") message: String,
+        @Field("email") email: String
+    )
+
+    @GET(Constants.SUBSCRIPTION_PLAN_LIST)
+    fun getSubscriptionPlans(@Header(Constants.AUTH_TOKEN) authToken: String)
 }

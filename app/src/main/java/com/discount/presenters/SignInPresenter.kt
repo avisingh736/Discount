@@ -5,7 +5,7 @@ import android.util.Patterns
 import com.discount.R
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
-import com.discount.app.utils.RememberLestener
+import com.discount.app.utils.listeners.RememberListener
 import com.discount.interactors.SignInInteractor
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.ForgotPasswordActivity
@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
  * Mail: avinash.mindiii@gmail.com
  */
 class SignInPresenter(var mDiscountView: DiscountView?, var mInteractor: SignInInteractor,
-                      var listenet: RememberLestener): SignInInteractor.OnLoginFinishedListener {
+                      var listenet: RememberListener
+): SignInInteractor.OnLoginFinishedListener {
     val TAG = SignInPresenter::class.java.simpleName
 
 

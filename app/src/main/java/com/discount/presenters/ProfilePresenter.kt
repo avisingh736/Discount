@@ -33,6 +33,9 @@ class ProfilePresenter(var mView: BaseView?) {
             profile.tvFirstName.text = firstName
             profile.tvLastName.text = lastName
             profile.tvEmailId.text = email
+            profile.tvDateOfBirth.text = dateOfBirth
+            profile.tvGender.text = gender
+            profile.tvPhoneNo.text = phoneNumber
             this
         }
     }
