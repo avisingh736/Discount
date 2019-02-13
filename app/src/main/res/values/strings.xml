@@ -89,7 +89,11 @@
     <string name="please_enter_email_id">Please enter email id</string>
     <string name="invalid_email_id">Invalid email id</string>
     <string name="please_enter_password">Please enter password</string>
+    <string name="please_enter_current_password">Please enter current password</string>
+    <string name="please_enter_new_password">Please enter new password</string>
     <string name="invalid_password">Invalid password</string>
+    <string name="invalid_current_password">Invalid current password</string>
+    <string name="invalid_new_password">Invalid new password</string>
     <string name="login_successful">Login successful</string>
     <string name="please_enter_first_name">Please enter first name</string>
     <string name="invalid_first_name">Invalid first name</string>
@@ -113,6 +117,9 @@
     <string name="please_enter_student_id">Please enter student id</string>
     <string name="something_went_wrong">Something went wrong…</string>
     <string name="no_data_found">No data found</string>
+    <string name="invalid_subject">Invalid subject</string>
+    <string name="please_enter_subject">Please enter subject</string>
+    <string name="please_enter_message">Please enter message</string>
 
     <!-- Lorem Ipsum-->
     <string name="l1">What is Lorem Ipsum?</string>
@@ -129,7 +136,7 @@
     <string name="three_months">3 month</string>
     <string name="l6">10</string>
     <string name="l7">90 Days</string>
-    <string name="coupons_can_be_redeemed_">Coupons can be redeemed: 10</string>
+    <string name="coupons_can_be_redeemed_">Coupons can be redeemed:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

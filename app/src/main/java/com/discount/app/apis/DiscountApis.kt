@@ -44,7 +44,8 @@ interface DiscountApis {
     ): Call<AuthResponse>
 
     @GET(Constants.UNIVERSITY_LIST)
-    fun getUniversityList(@Header(Constants.AUTH_TOKEN) authToken: String
+    fun getUniversityList(
+        @Header(Constants.AUTH_TOKEN) authToken: String
     ): Call<UniversityResponse>
 
     @FormUrlEncoded
@@ -96,20 +97,23 @@ interface DiscountApis {
     //ToDo: Model needs to be create for below
 
     @GET(Constants.MY_PROFILE)
-    fun getMyProfile(@Header(Constants.AUTH_TOKEN) authToken: String)
+    fun getMyProfile(
+        @Header(Constants.AUTH_TOKEN) authToken: String
+    ): Call<AuthResponse>
 
-    @FormUrlEncoded
+    @Multipart
     @POST(Constants.UPDATE_USER_PROFILE)
     fun updateUserProfile(
         @Header(Constants.AUTH_TOKEN) authToken: String,
-        @Field("first_name") firstName: String,
-        @Field("last_name") lastName: String,
-        @Field("email") email: String,
-        @Field("phoneNumber") phoneNumber: String,
-        @Field("country_code") countryCode: String,
-        @Field("gender") gender: String,
-        @Field("date_of_birth") dateOfBirth: String
-    )
+        @Part("first_name") firstName: RequestBody,
+        @Part("last_name") lastName: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phoneNumber") phoneNumber: RequestBody,
+        @Part("country_code") countryCode: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("date_of_birth") dateOfBirth: RequestBody,
+        @Part profileImage: MultipartBody.Part
+    ): Call<AuthResponse>
 
     @FormUrlEncoded
     @POST(Constants.CHANGE_PASSWORD)
@@ -118,7 +122,7 @@ interface DiscountApis {
         @Field("oldPassword") oldPassword: String,
         @Field("newPassword") newPassword: String,
         @Field("cPassword") cPassword: String
-    )
+    ): Call<AuthResponse>
 
     @FormUrlEncoded
     @POST(Constants.CONTACT_US)
@@ -127,8 +131,10 @@ interface DiscountApis {
         @Field("subject") subject: String,
         @Field("message") message: String,
         @Field("email") email: String
-    )
+    ): Call<BaseResponse>
 
     @GET(Constants.SUBSCRIPTION_PLAN_LIST)
-    fun getSubscriptionPlans(@Header(Constants.AUTH_TOKEN) authToken: String)
+    fun getSubscriptionPlans(
+        @Header(Constants.AUTH_TOKEN) authToken: String
+    ): Call<SubscriptionResponse>
 }

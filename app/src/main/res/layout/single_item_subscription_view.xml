@@ -22,6 +22,7 @@
                 android:layout_height="@dimen/dp_45"
                 android:gravity="center_vertical">
             <TextView
+                    android:id="@+id/tvPlanName"
                     android:text="@string/silver_plan"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/sp_20"
@@ -31,6 +32,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
             <TextView
+                    android:id="@+id/tvPlanAmount"
                     android:text="@string/l5"
                     android:gravity="center"
                     android:textSize="@dimen/sp_20"
@@ -39,6 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <TextView
+                    android:id="@+id/tvPlanInterval"
                     android:text="@string/three_months"
                     android:gravity="center"
                     android:textSize="@dimen/sp_14"
@@ -47,17 +50,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
         </LinearLayout>
-        <TextView
-                android:text="@string/coupons_can_be_redeemed_"
-                android:gravity="center_vertical"
-                android:textSize="@dimen/sp_16"
-                android:layout_marginTop="@dimen/dp_5"
-                android:layout_marginBottom="@dimen/dp_5"
-                android:textColor="@color/colorWhite"
-                android:fontFamily="@font/poppins_medium"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/coupons_can_be_redeemed_"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvPlanCouponRedeemPoints"
+                    android:text="10"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_margin="@dimen/dp_5"
+                    android:textColor="@color/colorWhite"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
         <TextView
+                android:id="@+id/tvPlanDescription"
                 android:text="@string/l2"
                 android:gravity="start"
                 android:textSize="@dimen/sp_14"
@@ -69,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <Button
-                    android:id="@+id/btnSignUp"
+                    android:id="@+id/btnSubscribe"
                     android:text="@string/subscribe"
                     android:textAllCaps="false"
                     android:layout_gravity="end|bottom"

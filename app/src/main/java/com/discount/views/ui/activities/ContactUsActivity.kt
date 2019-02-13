@@ -3,19 +3,24 @@ package com.discount.views.ui.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.View
 import com.discount.R
+import com.discount.app.Discount
 import com.discount.app.config.Constants
+import com.discount.presenters.ContactUsPresenter
 import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_contact_us.*
 
 class ContactUsActivity : AppCompatActivity(), DiscountView {
+    private val mPresenter = ContactUsPresenter(this)
+
     override fun onErrorOrInvalid(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Snackbar.make(alertRootLayoutContactUs,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(msg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Snackbar.make(alertRootLayoutContactUs,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun progress(flag: Boolean) {
@@ -34,6 +39,12 @@ class ContactUsActivity : AppCompatActivity(), DiscountView {
         setContentView(R.layout.activity_contact_us)
 
         ivGoToBack.setOnClickListener { finish() }
+        etEmailId.setText(Discount.getSession().email)
+        btnSubmit.setOnClickListener {
+            mPresenter.validate(etEmailId.text.toString(),
+                etSubject.text.toString(),
+                etMessage.text.toString())
+        }
     }
 
     override fun finish() {

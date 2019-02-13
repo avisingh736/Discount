@@ -43,8 +43,8 @@ class Constants {
          * */
         const val KEY_SUCCESS = "Success"
         const val KEY_FAIL = "Fail"
-        const val MALE = "male"
-        const val FEMALE = "female"
+        const val MALE = "Male"
+        const val FEMALE = "Female"
         const val KEY_RESULT_EXTRA = "result_extra"
         const val KEY_BUNDLE_PARAM = "extra_data"
         const val KEY_COUPON_EXTRA = "coupon_extra"

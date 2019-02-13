@@ -15,38 +15,47 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
-        <LinearLayout
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?selectableItemBackground"
+        <FrameLayout
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_70"
-                android:paddingStart="@dimen/dp_10"
-                android:paddingEnd="@dimen/dp_10"
-                android:paddingTop="@dimen/dp_10"
-                android:paddingBottom="@dimen/dp_5"
-                android:orientation="vertical">
-            <TextView
-                    android:text="@string/first_name"
-                    android:gravity="start"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@color/colorText"
-                    android:fontFamily="@font/poppins_regular"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?selectableItemBackground"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            <EditText
-                    android:background="@null"
-                    android:padding="@dimen/dp_0"
-                    android:id="@+id/etFirstName"
-                    android:gravity="start"
-                    android:textSize="@dimen/sp_14"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:textColor="@color/colorMediumGray"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-        </LinearLayout>
+                    android:layout_height="@dimen/dp_70"
+                    android:paddingStart="@dimen/dp_10"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:orientation="vertical">
+                <TextView
+                        android:text="@string/first_name"
+                        android:gravity="start"
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="@color/colorText"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <EditText
+                            android:background="@null"
+                            android:padding="@dimen/dp_0"
+                            android:id="@+id/etFirstName"
+                            android:gravity="start"
+                            android:textSize="@dimen/sp_14"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:textColor="@color/colorMediumGray"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
         <View
                 android:background="@color/colorGray"
                 android:layout_width="match_parent"
@@ -300,7 +309,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
         <Button
-                android:id="@+id/btnLogout"
+                android:id="@+id/btnUpdate"
                 android:text="@string/update"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"

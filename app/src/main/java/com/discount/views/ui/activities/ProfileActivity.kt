@@ -2,12 +2,14 @@ package com.discount.views.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.discount.R
 import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
+import com.discount.interactors.ProfileInteractor
 import com.discount.presenters.ProfilePresenter
 import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.app_bar_profile.*
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.content_profile.*
 
 
 class ProfileActivity : AppCompatActivity(),DiscountView {
-    private val mPresenter = ProfilePresenter(this)
+    private val mPresenter = ProfilePresenter(this,ProfileInteractor())
 
     override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
         val mIntent = Intent(this,clazz)
@@ -25,11 +27,11 @@ class ProfileActivity : AppCompatActivity(),DiscountView {
     }
 
     override fun onErrorOrInvalid(msg: String) {
-        //TODO("not implemented")
+        Snackbar.make(alertRootLayoutProfile,msg,Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(msg: String) {
-        //TODO("not implemented")
+        Snackbar.make(alertRootLayoutProfile,msg,Snackbar.LENGTH_SHORT).show()
     }
 
     override fun progress(flag: Boolean) {
@@ -60,10 +62,15 @@ class ProfileActivity : AppCompatActivity(),DiscountView {
             overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
         }
 
+        llSubscriptions.setOnClickListener { navigateTo(SubscriptionDetailActivity::class.java) }
         llChangePassword.setOnClickListener { mPresenter.showChangePasswordDialog() }
-        mPresenter.onCreate(this)
+        mPresenter.initViews(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mPresenter.initViews(this)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

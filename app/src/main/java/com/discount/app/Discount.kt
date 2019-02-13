@@ -1,18 +1,22 @@
 package com.discount.app
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.TypedValue
 import com.crashlytics.android.Crashlytics
+import com.discount.R
 import com.discount.app.apis.DiscountApis
 import com.discount.app.config.Constants
 import com.discount.app.config.Constants.Companion.BASE_URL
 import com.discount.app.config.Constants.Companion.BASE_URL_DEVELOPMENT
 import com.discount.app.prefs.PrefHelper
 import com.discount.models.UserDetail
+import com.discount.views.ui.activities.SignInActivity
 import com.google.gson.Gson
 import io.fabric.sdk.android.Fabric
 import okhttp3.OkHttpClient
@@ -82,5 +86,20 @@ class Discount: Application() {
          *  Convert dp to pixels
          * */
         fun dpToPx(mContext: Context, dp: Float): Int = (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, mContext.resources.displayMetrics)).toInt()
+
+        fun logout(context: Context) {
+            Discount.removeSession()
+            val prefHelper = PrefHelper.instance
+            prefHelper?.run {
+                savePref(Constants.IS_USER_LOGGED_IN,false)
+                remove(Constants.USER_DETAILS)
+            }
+            val mIntent = Intent(context, SignInActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            context.startActivity(mIntent)
+            (context as Activity).finish()
+            (context as Activity).overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
+        }
     }
 }

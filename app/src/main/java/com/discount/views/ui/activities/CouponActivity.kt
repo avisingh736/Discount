@@ -96,13 +96,12 @@ class CouponActivity : AppCompatActivity(),DiscountView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(requestCode == Constants.PLACE_PICKER_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 val place = PlacePicker.getPlace(this@CouponActivity,data)
                 tvUserAddress.text = place.address
                 offset = 0
-                mPresenter.getCouponList(latitude = place.latLng.latitude.toString(),longitude = place.latLng.longitude.toString())
+                mPresenter.getCouponList(latitude = place.latLng.latitude.toString(),longitude = place.latLng.longitude.toString(),search = couponFilter)
             }
         } else if (requestCode == Constants.COUPON_FILTER_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {

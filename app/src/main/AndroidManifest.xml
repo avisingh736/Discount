@@ -30,7 +30,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>v
+        </activity>
         <activity
                 android:name=".views.ui.activities.SignInActivity"
                 android:screenOrientation="portrait"/>
