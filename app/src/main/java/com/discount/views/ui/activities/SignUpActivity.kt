@@ -59,6 +59,10 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
             mSignUpPresenter.validate(etFirstName.text.toString(),etLastName.text.toString(),
                 etEmailId.text.toString(),etPassword.text.toString(),etConfirmPassword.text.toString())
         }
+        btnLoginWithFacebook.setOnClickListener {
+            mSignUpPresenter.continueWithFacebook()
+        }
+        mSignUpPresenter.initFacebookButton(btnFacebookLogin)
     }
 
     override fun onDestroy() {
@@ -72,8 +76,8 @@ class SignUpActivity : AppCompatActivity(), DiscountView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         mSignUpPresenter.onActivityResult(requestCode,resultCode,data)
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constants.PICK_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 llSelectImage.alpha = 0f

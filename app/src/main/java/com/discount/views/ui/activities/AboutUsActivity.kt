@@ -1,15 +1,25 @@
 package com.discount.views.ui.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.discount.R
 import com.discount.app.config.Constants
+import com.discount.models.Content
+import com.discount.presenters.AboutUsPresenter
 import com.discount.views.DiscountView
 import kotlinx.android.synthetic.main.activity_about_us.*
 
 class AboutUsActivity : AppCompatActivity(), DiscountView {
+
+    val mPresenter = AboutUsPresenter(this)
+
     override fun onErrorOrInvalid(msg: String) {
         //TODO("not implemented")
     }
@@ -34,6 +44,28 @@ class AboutUsActivity : AppCompatActivity(), DiscountView {
         setContentView(R.layout.activity_about_us)
 
         ivGoToBack.setOnClickListener { finish() }
+        mWebView.webChromeClient = WebChromeClient()
+        mWebView.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                progress(true)
+                super.onPageStarted(view, url, favicon)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                progress(false)
+                super.onPageFinished(view, url)
+            }
+        }
+        mWebView.settings.javaScriptEnabled = true
+        mWebView.isHorizontalScrollBarEnabled = false
+        mWebView.isVerticalScrollBarEnabled = false
+        mWebView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        mWebView.loadUrl("https://discoount.com/admin/terms")
+        mPresenter.getContents()
+    }
+
+    fun onContent(content: Content) {
+
     }
 
     override fun finish() {

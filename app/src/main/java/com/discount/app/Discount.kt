@@ -18,6 +18,8 @@ import com.discount.app.config.Constants.Companion.BASE_URL_DEVELOPMENT
 import com.discount.app.prefs.PrefHelper
 import com.discount.models.UserDetail
 import com.discount.views.ui.activities.SignInActivity
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.google.gson.Gson
 import io.fabric.sdk.android.Fabric
 import okhttp3.OkHttpClient
@@ -41,6 +43,8 @@ class Discount: Application() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
         PrefHelper.init(this)
+        FacebookSdk.sdkInitialize(baseContext)
+        AppEventsLogger.activateApp(this)
     }
 
     companion object {

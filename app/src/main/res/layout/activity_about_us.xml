@@ -47,12 +47,11 @@
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/webSiteBackground"
                 android:overScrollMode="never">
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dp_10"
-                    android:paddingEnd="@dimen/dp_10"
+                    android:layout_height="match_parent"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
                 <com.github.siyamed.shapeimageview.CircularImageView
@@ -61,15 +60,12 @@
                         android:layout_width="@dimen/dp_200"
                         android:layout_height="@dimen/dp_200"
                         android:layout_marginTop="@dimen/dp_20"
-                        android:layout_marginBottom="@dimen/dp_30"/>
-                <TextView
-                        android:textColor="@color/colorTextGray"
-                        android:text="@string/l4"
-                        android:justificationMode="inter_word"
-                        android:textSize="@dimen/sp_14"
-                        android:fontFamily="@font/poppins_light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginBottom="@dimen/dp_0"/>
+                <WebView
+                        android:id="@+id/mWebView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                </WebView>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

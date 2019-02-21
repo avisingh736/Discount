@@ -38,6 +38,7 @@ class Constants {
         const val CONTACT_US = "user/contactUs" //POST
         const val SUBSCRIPTION_PLAN_LIST = "subscription/getUserSubscriptionPlanList" //GET
         const val REDEEM_COUPON = "coupon/couponRedeem" //POST
+        const val CONTENTS = "service/getContent" //POST
 
         /**
          * Keys below

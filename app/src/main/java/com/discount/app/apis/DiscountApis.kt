@@ -20,9 +20,9 @@ interface DiscountApis {
         @Part("first_name") firstName: RequestBody,
         @Part("last_name") lastName: RequestBody,
         @Part("email") email: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part("cpassword") cPassword: RequestBody,
-        @Part profileImage: MultipartBody.Part,
+        @Part("password") password: RequestBody?,
+        @Part("cpassword") cPassword: RequestBody?,
+        @Part profileImage: MultipartBody.Part?,
         @Part("device_type") deviceType: RequestBody,
         @Part("social_id") socialId: RequestBody,
         @Part("social_type") socialType: RequestBody
@@ -145,4 +145,9 @@ interface DiscountApis {
         @Field("couponId") couponId: String,
         @Field("storeId") storeId: String
     ): Call<BaseResponse>
+
+    @GET(Constants.CONTENTS)
+    fun getContents(
+        @Header(Constants.AUTH_TOKEN) authToken: String
+    ): Call<ContentResponse>
 }

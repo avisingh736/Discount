@@ -9,6 +9,7 @@
 
     <color name="colorThemeRed">#b40a01</color>
     <color name="colorThemeYellow">#FFC423</color>
+    <color name="webSiteBackground">#f4f5fa</color>
 
     <color name="colorTransparent">#00000000</color>
     <color name="colorWhite">#FFFFFF</color>

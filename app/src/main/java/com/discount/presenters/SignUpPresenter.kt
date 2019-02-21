@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
@@ -20,16 +21,21 @@ import android.view.LayoutInflater
 import com.discount.BuildConfig
 import com.discount.R
 import com.discount.app.config.Constants
+import com.discount.app.utils.MyLog
 import com.discount.interactors.SignUpInteractor
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.HomeActivity
 import com.discount.views.ui.activities.SignUpActivity
+import com.facebook.*
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_profile_image_options.view.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.lang.Exception
@@ -45,9 +51,15 @@ import java.util.*
 class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpInteractor):
     SignUpInteractor.OnRegistrationFinishedListener {
     private val TAG = SignUpPresenter::class.java.simpleName
+    private var fbButton: LoginButton? = null
 
     private var mUri: Uri? = null
     private var imageUri: Uri? = null
+    private var callbackManager: CallbackManager? = null
+
+    init {
+        callbackManager = CallbackManager.Factory.create()
+    }
 
     override fun onError(msg: String) {
         mDiscountView?.let {
@@ -67,6 +79,7 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
 
     fun onDestroy() {
         mDiscountView = null
+        fbButton = null
     }
 
     fun validate(firstName: String, lastName: String, email: String,
@@ -150,6 +163,7 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager?.onActivityResult(requestCode,resultCode,data)
         if (requestCode == Constants.PICK_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK && data != null) {
                 val options = UCrop.Options()
@@ -246,5 +260,46 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
         return Uri.parse(path)
+    }
+
+    fun initFacebookButton(mButton: LoginButton) {
+        fbButton = mButton
+    }
+
+    fun continueWithFacebook() {
+        fbButton?.setReadPermissions(mutableListOf("user_photos", "email", "user_birthday", "public_profile"))
+        fbButton?.registerCallback(callbackManager,object : FacebookCallback<LoginResult>{
+            override fun onSuccess(result: LoginResult?) {
+                val mRequest = GraphRequest.newMeRequest(result?.accessToken,object : GraphRequest.GraphJSONObjectCallback {
+                    override fun onCompleted(`object`: JSONObject?, response: GraphResponse?) {
+                        MyLog.i(TAG,response.toString())
+
+                        val fName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("first_name")!!)
+                        val lName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("last_name")!!)
+                        val mail = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("email")!!)
+                        val dType = RequestBody.create(MediaType.parse("text/plain"),"2")
+                        val sId = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("id"))
+                        val sType = RequestBody.create(MediaType.parse("text/plain"),"facebook")
+                        mInteractor.register(firstName = fName,lastName =  lName,email =  mail,deviceType = dType,
+                            socialId = sId, socialType = sType,mListener = this@SignUpPresenter)
+                        mDiscountView?.progress(true)
+                    }
+                })
+
+                val mBundle = Bundle()
+                mBundle.putString("fields","id,first_name,last_name,email,gender,birthday")
+                mRequest.parameters = mBundle
+                mRequest.executeAsync()
+            }
+
+            override fun onError(error: FacebookException?) {
+                MyLog.e(TAG,"Error with facebook login",error!!)
+            }
+
+            override fun onCancel() {
+                MyLog.i(TAG, "Login cancelled")
+            }
+        })
+        fbButton?.performClick()
     }
 }

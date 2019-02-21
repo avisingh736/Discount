@@ -145,5 +145,8 @@
 
     <!-- API keys-->
     <string name="google_maps_api_kay">AIzaSyBK-w5d0vnl3phAmvwO3R2ZDmT6sX3Qsso</string>
+    <string name="facebook_app_id">1952618965034793</string>
+    <string name="fb_login_protocol_scheme">fb1952618965034793</string>
+
 
 </resources>

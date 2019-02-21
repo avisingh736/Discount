@@ -25,7 +25,7 @@ class SignUpInteractor {
     }
 
     fun register(firstName: RequestBody, lastName: RequestBody, email: RequestBody,
-                 password: RequestBody, cPassword: RequestBody, profileImage: MultipartBody.Part,
+                 password: RequestBody? = null, cPassword: RequestBody? = null, profileImage: MultipartBody.Part? = null,
                  deviceType: RequestBody, socialId: RequestBody, socialType: RequestBody,
                  mListener: OnRegistrationFinishedListener) {
         Discount.getApis().register(firstName,lastName,email,password,
