@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import com.bumptech.glide.Glide
 import com.discount.BuildConfig
 import com.discount.R
+import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.interactors.EditProfileInteractor
@@ -45,6 +46,10 @@ import java.util.*
  * Mail: avinash.mindiii@gmail.com
  */
 class EditProfilePresenter(var mView: DiscountView?,var mInteractor: EditProfileInteractor): EditProfileInteractor.OnProfileUpdateListener {
+    override fun logout() {
+        Discount.logout(mView as Context)
+    }
+
     override fun onError(msg: String) {
         mView?.let {
             it.progress(false)

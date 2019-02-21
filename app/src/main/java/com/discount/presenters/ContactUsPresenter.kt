@@ -7,8 +7,10 @@ import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
 import com.discount.models.BaseResponse
+import com.discount.models.ErrorResponse
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.ContactUsActivity
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_contact_us.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +29,15 @@ class ContactUsPresenter(var mDiscountView: DiscountView?) {
         Discount.getApis().contactUs(Discount.getSession().authToken, subject,message,email).enqueue(object : Callback<BaseResponse>{
             override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                 mDiscountView?.progress(false)
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        Discount.logout(mDiscountView as Context)
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         mDiscountView?.onSuccess(response.body()?.message!!)

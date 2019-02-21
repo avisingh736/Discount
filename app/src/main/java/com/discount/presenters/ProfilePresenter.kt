@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
 import com.discount.R
+import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
@@ -44,6 +45,10 @@ class ProfilePresenter(var mView: DiscountView?, var mInteractor: ProfileInterac
             profile.tvPhoneNo.text = "$countryCode $phoneNumber"
             this
         }
+    }
+
+    override fun logout() {
+        Discount.logout(mView as Context)
     }
 
     fun showChangePasswordDialog() {

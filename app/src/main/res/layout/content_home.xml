@@ -11,14 +11,74 @@
         tools:context=".views.ui.activities.HomeActivity">
     <LinearLayout
             android:background="@color/colorTransparent"
+            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <FrameLayout
+                app:layout_collapseMode="parallax"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_280"
+                android:background="@color/colorThemeRed">
+            <LinearLayout
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <ImageView
+                        android:id="@+id/goForCoupon"
+                        android:src="@drawable/search_ico"
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/dp_130"
+                        android:layout_height="100dp"/>
+                <LinearLayout
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <TextView
+                            android:text="@string/get_your_coupon"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/sp_30"
+                            android:gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                        <TextView
+                                android:text="@string/free"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/sp_30"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_medium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <TextView
+                                android:text="@string/here"
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorThemeYellow"
+                                android:textSize="@dimen/sp_30"
+                                android:gravity="center"
+                                android:paddingStart="@dimen/dp_5"
+                                android:paddingEnd="@dimen/dp_5"
+                                android:fontFamily="@font/poppins_bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvHomeCouponsHere"
+                android:layout_marginTop="-50dp"
                 android:background="@color/colorTransparent"
                 android:overScrollMode="never"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

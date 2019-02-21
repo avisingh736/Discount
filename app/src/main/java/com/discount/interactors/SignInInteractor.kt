@@ -5,6 +5,8 @@ import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
+import com.discount.models.ErrorResponse
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +28,7 @@ class SignInInteractor {
         Discount.getApis().login(email,password,deviceType).enqueue(object : Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
+
                 if (response.isSuccessful) {
                     response.body()?.run {
                         if (status == Constants.KEY_SUCCESS) {

@@ -5,6 +5,8 @@ import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
 import com.discount.models.Coupon
 import com.discount.models.CouponResponse
+import com.discount.models.ErrorResponse
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +22,7 @@ class CouponInteractor {
         fun onSuccess(msg: String)
         fun progress(flag: Boolean)
         fun onError(msg: String)
+        fun logout()
     }
     val TAG = CouponInteractor::class.java.simpleName
 
@@ -30,6 +33,15 @@ class CouponInteractor {
             override fun onResponse(call: Call<CouponResponse>, response: Response<CouponResponse>) {
                 mListener.progress(false)
                 MyLog.d(TAG,"Response ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(),ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         val result: CouponResponse.Result = response.body()?.result!!

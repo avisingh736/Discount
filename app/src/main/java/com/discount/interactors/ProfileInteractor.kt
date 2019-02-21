@@ -5,6 +5,8 @@ import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
+import com.discount.models.ErrorResponse
+import com.google.gson.Gson
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -23,12 +25,22 @@ class ProfileInteractor {
     interface OnProfileUpdateListener{
         fun onError(msg: String)
         fun onSuccess(msg: String)
+        fun logout()
     }
 
     fun changePassword(oldPassword: String, newPassword: String, cPassword: String, mListener: OnProfileUpdateListener) {
         Discount.getApis().changePassword(Discount.getSession().authToken,oldPassword,newPassword,cPassword).enqueue(object : Callback<AuthResponse>{
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     response.body()?.run {
                         if (status == Constants.KEY_SUCCESS) {

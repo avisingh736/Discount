@@ -4,6 +4,8 @@ import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
+import com.discount.models.ErrorResponse
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,12 +21,22 @@ class PasswordInteractor {
     interface OnResponseListener {
         fun onError(msg: String)
         fun onSuccess(msg: String)
+        fun logout()
     }
 
     fun send(email: String, mListener: OnResponseListener) {
         Discount.getApis().forgotPassword(email).enqueue(object : Callback<AuthResponse>{
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"Response ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     if (response.body()?.status?.equals(Constants.KEY_SUCCESS)!!) {
                         mListener.onSuccess(response.body()?.message!!)

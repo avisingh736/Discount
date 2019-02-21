@@ -1,11 +1,14 @@
 package com.discount.presenters
 
+import android.content.Context
 import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
+import com.discount.models.ErrorResponse
 import com.discount.models.StoreInfoResponse
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.StoreDetailActivity
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +27,15 @@ class StoreDetailPresenter(var mDiscountView: DiscountView?) {
             override fun onResponse(call: Call<StoreInfoResponse>, response: Response<StoreInfoResponse>) {
                 mDiscountView?.progress(false)
                 MyLog.i(TAG,"onResponse ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        Discount.logout(mDiscountView as Context)
+                        return
+                    }
+                }
+
                 if(response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         val result: StoreInfoResponse.Result = response.body()?.result!!

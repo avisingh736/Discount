@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
 import android.util.TypedValue
 import com.crashlytics.android.Crashlytics
@@ -32,6 +33,10 @@ import java.util.concurrent.TimeUnit
  */
 class Discount: Application() {
 
+    init {
+        instance = this
+    }
+
     override fun onCreate() {
         super.onCreate()
         Fabric.with(this, Crashlytics())
@@ -43,6 +48,16 @@ class Discount: Application() {
          *  Make logs enable and disable from here
          * */
         const val isLogEnable = true
+
+        /**
+         *  This method is for application context
+         *  @return Context
+         * */
+        private var instance: Discount? = null
+
+        fun applicationContext() : Context {
+            return instance!!.applicationContext
+        }
 
         /**
          *  Retrofit configuration
@@ -97,6 +112,9 @@ class Discount: Application() {
             val mIntent = Intent(context, SignInActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             }
+            val mBundle = Bundle()
+            mBundle.putBoolean(Constants.KEY_INVALID_SESSION,true)
+            mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,mBundle)
             context.startActivity(mIntent)
             (context as Activity).finish()
             (context as Activity).overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)

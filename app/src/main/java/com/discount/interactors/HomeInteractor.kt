@@ -4,10 +4,8 @@ import android.location.Location
 import com.discount.app.Discount
 import com.discount.app.config.Constants
 import com.discount.app.utils.MyLog
-import com.discount.models.Coupon
-import com.discount.models.CouponResponse
-import com.discount.models.University
-import com.discount.models.UniversityResponse
+import com.discount.models.*
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +24,7 @@ class HomeInteractor {
         fun onSuccessCoupons(coupons: MutableList<Coupon>)
         fun progress(flag: Boolean)
         fun onError(msg: String)
+        fun logout()
     }
 
     fun getUniversityListFromServer(mListener: OnResponseListener) {
@@ -33,6 +32,15 @@ class HomeInteractor {
             override fun onResponse(call: Call<UniversityResponse>, response: Response<UniversityResponse>) {
                 mListener.progress(false)
                 MyLog.i(TAG,"Response ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         val result: UniversityResponse.Result = response.body()?.result!!
@@ -57,6 +65,15 @@ class HomeInteractor {
             override fun onResponse(call: Call<UniversityResponse>, response: Response<UniversityResponse>) {
                 mListener.progress(false)
                 MyLog.i(TAG,"Response ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(),ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         mListener.onUniversityAdded(response.body()?.message!!)
@@ -80,6 +97,15 @@ class HomeInteractor {
             override fun onResponse(call: Call<CouponResponse>, response: Response<CouponResponse>) {
                 mListener.progress(false)
                 MyLog.i(TAG,"Response ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(),ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        mListener.logout()
+                        return
+                    }
+                }
+
                 if (response.isSuccessful && response.body() != null) {
                     if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
                         val result: CouponResponse.Result = response.body()?.result!!

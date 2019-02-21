@@ -45,6 +45,10 @@ class HomePresenter(var mHomeView: HomeView?, var mInteractor: HomeInteractor): 
     private var mFusedLocationProviderClient: FusedLocationProviderClient? = null
     private var mLocation: Location? = null
 
+    override fun logout() {
+        Discount.logout(mHomeView as Context)
+    }
+
     fun getLastKnownLocation() {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(mHomeView as Context)
         try {

@@ -25,6 +25,7 @@ class CouponDetailActivity : AppCompatActivity(),DiscountView {
     private val maxLines = 5
     private val twoSpaces = "  "
     private val mPresenter = CouponDetailPresenter(this)
+    private var couponInfo: CouponInfo? = null
 
     override fun onErrorOrInvalid(msg: String) {
         Snackbar.make(alertRootLayoutCouponDetail,msg, Snackbar.LENGTH_SHORT).show()
@@ -55,6 +56,11 @@ class CouponDetailActivity : AppCompatActivity(),DiscountView {
             mPresenter.getCouponInfo(coupon.couponId)
         }
 
+        btnRedeem.setOnClickListener {
+            if (couponInfo != null) {
+                mPresenter.redeemCoupon(couponInfo?.couponId!!,couponInfo?.userId!!)
+            }
+        }
     }
 
     override fun finish() {
@@ -68,6 +74,7 @@ class CouponDetailActivity : AppCompatActivity(),DiscountView {
     }
 
     fun onCouponInfo(couponInfo: CouponInfo) {
+        this.couponInfo = couponInfo
         Glide.with(this).load(couponInfo.storeImage).into(ivStoreImage)
         Glide.with(this).load(couponInfo.couponImage).into(ivCouponImage)
         tvStoreTitle.text = couponInfo.fullName

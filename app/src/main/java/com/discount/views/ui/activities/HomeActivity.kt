@@ -44,13 +44,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var coupons = mutableListOf<Coupon>()
 
     override fun onErrorOrInvalid(msg: String) {
-        //ToDo: Remove Comment here
-        //Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(msg: String) {
-        //ToDo: Remove Comment here
-        //Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(alertRootLayoutHome,msg, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun progress(flag: Boolean) {
@@ -84,22 +82,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.menu.getItem(0).isChecked = true
         MyUtils.addFontToNavDrawer(nav_view.menu)
 
-        appBarHome.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener{
-            var isShow = true
-            var scrollRange = -1
-            override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout!!.totalScrollRange
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarHome.title = "Home                   "
-                    isShow = true
-                } else if(isShow) {
-                    collapsingToolbarHome.title = " "
-                    isShow = false
-                }
-            }
-        })
         mHomePresenter.requestForLocationAccess()
 
         goForCoupon.setOnClickListener { navigateTo(CouponActivity::class.java) }

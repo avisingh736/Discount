@@ -1,5 +1,6 @@
 package com.discount.presenters
 
+import android.content.Context
 import com.discount.app.Discount
 import com.discount.interactors.CouponInteractor
 import com.discount.models.Coupon
@@ -12,6 +13,11 @@ import com.discount.views.ui.activities.CouponActivity
  * Mail: avinash.mindiii@gmail.com
  */
 class CouponPresenter(var mDiscountView: DiscountView?, var mInteractor: CouponInteractor): CouponInteractor.OnResponseListener {
+
+    override fun logout() {
+        Discount.logout(mDiscountView as Context)
+    }
+
     override fun onSuccess(msg: String) {
         mDiscountView?.onSuccess(msg)
     }

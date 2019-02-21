@@ -72,6 +72,13 @@ class SignInActivity : AppCompatActivity(),DiscountView, RememberListener {
         }
 
         mSignInPresenter.checkRemembered()
+
+        val bundle = intent.getBundleExtra(Constants.KEY_BUNDLE_PARAM)
+        if (bundle != null) {
+            if (bundle.getBoolean(Constants.KEY_INVALID_SESSION,false)) {
+                onErrorOrInvalid(getString(R.string.invalid_session_please_login_again))
+            }
+        }
     }
 
     override fun onDestroy() {

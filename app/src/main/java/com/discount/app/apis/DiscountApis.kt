@@ -137,4 +137,12 @@ interface DiscountApis {
     fun getSubscriptionPlans(
         @Header(Constants.AUTH_TOKEN) authToken: String
     ): Call<SubscriptionResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.REDEEM_COUPON)
+    fun redeemCoupon(
+        @Header(Constants.AUTH_TOKEN) authToken: String,
+        @Field("couponId") couponId: String,
+        @Field("storeId") storeId: String
+    ): Call<BaseResponse>
 }

@@ -37,6 +37,7 @@ class Constants {
         const val CHANGE_PASSWORD = "user/changePassword" //POST
         const val CONTACT_US = "user/contactUs" //POST
         const val SUBSCRIPTION_PLAN_LIST = "subscription/getUserSubscriptionPlanList" //GET
+        const val REDEEM_COUPON = "coupon/couponRedeem" //POST
 
         /**
          * Keys below
@@ -55,6 +56,7 @@ class Constants {
         const val KEY_FROM_CATEGORY = "from_coupon_category"
         const val KEY_FROM_COUPON_INFO = "from_coupon_info"
         const val KEY_FROM_STORE_LIST = "from_store_list"
+        const val KEY_INVALID_SESSION = "invalid_session"
 
         /**
          *  Preferences constants

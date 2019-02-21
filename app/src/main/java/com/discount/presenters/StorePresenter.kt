@@ -15,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -38,6 +39,10 @@ class StorePresenter(var mDiscountView: DiscountView?,var infoWindowManager: Inf
         offsetX = (mDiscountView as Context).resources.getDimension(R.dimen.marker_offset_x).toInt()
         offsetY = (mDiscountView as Context).resources.getDimension(R.dimen.marker_offset_y).toInt()
         markerSpec = InfoWindow.MarkerSpecification(offsetX, offsetY)
+    }
+
+    override fun logout() {
+        Discount.logout(mDiscountView as Context)
     }
 
     override fun onSuccessStoreList(stores: MutableList<Store>) {
@@ -85,7 +90,6 @@ class StorePresenter(var mDiscountView: DiscountView?,var infoWindowManager: Inf
                 return false
             }
         }
-
         return true
     }
 
@@ -93,6 +97,7 @@ class StorePresenter(var mDiscountView: DiscountView?,var infoWindowManager: Inf
         googleMap?.run {
             moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(Discount.getSession().latitude.toDouble(),Discount.getSession().longitude.toDouble()),16f))
             setOnMarkerClickListener(this@StorePresenter)
+            setMapStyle(MapStyleOptions.loadRawResourceStyle(mDiscountView as Context,R.raw.my_map_style))
             mMap = this
         }
     }

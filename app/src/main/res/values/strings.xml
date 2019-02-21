@@ -120,6 +120,7 @@
     <string name="invalid_subject">Invalid subject</string>
     <string name="please_enter_subject">Please enter subject</string>
     <string name="please_enter_message">Please enter message</string>
+    <string name="invalid_session_please_login_again">Invalid session, Please login again</string>
 
     <!-- Lorem Ipsum-->
     <string name="l1">What is Lorem Ipsum?</string>

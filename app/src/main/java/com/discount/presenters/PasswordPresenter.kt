@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Patterns
 import com.discount.R
+import com.discount.app.Discount
 import com.discount.interactors.PasswordInteractor
 import com.discount.views.DiscountView
 
@@ -13,6 +14,11 @@ import com.discount.views.DiscountView
  * Mail: avinash.mindiii@gmail.com
  */
 class PasswordPresenter(var mDiscountView: DiscountView?, var mPasswordInteractor: PasswordInteractor): PasswordInteractor.OnResponseListener {
+
+    override fun logout() {
+        Discount.logout(mDiscountView as Context)
+    }
+
     override fun onError(msg: String) {
         mDiscountView?.let {
             it.progress(false)
