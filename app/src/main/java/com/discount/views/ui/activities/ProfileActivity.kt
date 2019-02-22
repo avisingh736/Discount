@@ -12,6 +12,7 @@ import com.discount.app.prefs.PrefHelper
 import com.discount.interactors.ProfileInteractor
 import com.discount.presenters.ProfilePresenter
 import com.discount.views.DiscountView
+import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.app_bar_profile.*
 import kotlinx.android.synthetic.main.content_profile.*
 
@@ -55,6 +56,7 @@ class ProfileActivity : AppCompatActivity(),DiscountView {
                 savePref(Constants.IS_USER_LOGGED_IN,false)
                 remove(Constants.USER_DETAILS)
             }
+            LoginManager.getInstance().logOut()
             val mIntent = Intent(this,SignInActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             }

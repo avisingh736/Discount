@@ -51,10 +51,11 @@ import java.util.*
 class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpInteractor):
     SignUpInteractor.OnRegistrationFinishedListener {
     private val TAG = SignUpPresenter::class.java.simpleName
-    private var fbButton: LoginButton? = null
 
     private var mUri: Uri? = null
     private var imageUri: Uri? = null
+
+    private var fbButton: LoginButton? = null
     private var callbackManager: CallbackManager? = null
 
     init {
@@ -264,27 +265,22 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
 
     fun initFacebookButton(mButton: LoginButton) {
         fbButton = mButton
-    }
-
-    fun continueWithFacebook() {
         fbButton?.setReadPermissions(mutableListOf("user_photos", "email", "user_birthday", "public_profile"))
         fbButton?.registerCallback(callbackManager,object : FacebookCallback<LoginResult>{
             override fun onSuccess(result: LoginResult?) {
-                val mRequest = GraphRequest.newMeRequest(result?.accessToken,object : GraphRequest.GraphJSONObjectCallback {
-                    override fun onCompleted(`object`: JSONObject?, response: GraphResponse?) {
-                        MyLog.i(TAG,response.toString())
+                val mRequest = GraphRequest.newMeRequest(result?.accessToken) { `object`, response ->
+                    MyLog.i(TAG,response.toString())
 
-                        val fName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("first_name")!!)
-                        val lName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("last_name")!!)
-                        val mail = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("email")!!)
-                        val dType = RequestBody.create(MediaType.parse("text/plain"),"2")
-                        val sId = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("id"))
-                        val sType = RequestBody.create(MediaType.parse("text/plain"),"facebook")
-                        mInteractor.register(firstName = fName,lastName =  lName,email =  mail,deviceType = dType,
-                            socialId = sId, socialType = sType,mListener = this@SignUpPresenter)
-                        mDiscountView?.progress(true)
-                    }
-                })
+                    val fName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("first_name")!!)
+                    val lName = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("last_name")!!)
+                    val mail = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("email")!!)
+                    val dType = RequestBody.create(MediaType.parse("text/plain"),"2")
+                    val sId = RequestBody.create(MediaType.parse("text/plain"),`object`?.getString("id"))
+                    val sType = RequestBody.create(MediaType.parse("text/plain"),"facebook")
+                    mInteractor.register(firstName = fName,lastName =  lName,email =  mail,deviceType = dType,
+                        socialId = sId, socialType = sType,mListener = this@SignUpPresenter)
+                    mDiscountView?.progress(true)
+                }
 
                 val mBundle = Bundle()
                 mBundle.putString("fields","id,first_name,last_name,email,gender,birthday")
@@ -300,6 +296,9 @@ class SignUpPresenter(var mDiscountView: DiscountView?, var mInteractor: SignUpI
                 MyLog.i(TAG, "Login cancelled")
             }
         })
+    }
+
+    fun continueWithFacebook() {
         fbButton?.performClick()
     }
 }

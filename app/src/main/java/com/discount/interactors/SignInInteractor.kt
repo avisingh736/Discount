@@ -7,6 +7,8 @@ import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
 import com.discount.models.ErrorResponse
 import com.google.gson.Gson
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,5 +59,39 @@ class SignInInteractor {
                 MyLog.e(TAG,"Error: ",t)
             }
         })
+    }
+
+    fun continueWithFacebook(firstName: RequestBody, lastName: RequestBody, email: RequestBody,
+                             password: RequestBody? = null, cPassword: RequestBody? = null, profileImage: MultipartBody.Part? = null,
+                             deviceType: RequestBody, socialId: RequestBody, socialType: RequestBody,
+                             mListener: OnLoginFinishedListener) { Discount.getApis().register(firstName,lastName,email,password,
+            cPassword,profileImage,deviceType,socialId,socialType).enqueue(object : Callback<AuthResponse>{
+            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                MyLog.i(TAG,"msg ${response.body()?.message}")
+                if (response.isSuccessful) {
+                    response.body()?.run {
+                        if (status == Constants.KEY_SUCCESS) {
+                            val prefHelper = PrefHelper.instance
+                            prefHelper?.run {
+                                savePref(Constants.IS_USER_LOGGED_IN,true)
+                                remove(Constants.USER_DETAILS)
+                                savePref(Constants.USER_DETAILS,PrefHelper.encodeProfile(userDetail))
+                            }
+                            mListener.onSuccess(message)
+                        } else {
+                            mListener.onError(message)
+                        }
+                    }
+                } else {
+                    mListener.onError("${response.message()} ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                mListener.onError(t.localizedMessage)
+                MyLog.e(TAG,"Error: ",t)
+            }
+        })
+
     }
 }

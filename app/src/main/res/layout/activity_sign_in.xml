@@ -134,18 +134,29 @@
                             android:layout_height="match_parent"/>
                 </LinearLayout>
             </FrameLayout>
-            <Button
-                    android:id="@+id/btnSignWithFacebook"
-                    android:text="@string/sign_in_with_facebook"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
+            <FrameLayout
                     android:layout_marginTop="@dimen/dp_5"
                     android:layout_marginBottom="@dimen/dp_10"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_55"
-                    android:textSize="@dimen/sp_14"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/meterial_button_fb"/>
+                    android:layout_height="@dimen/dp_55">
+                <com.facebook.login.widget.LoginButton
+                        android:id="@+id/btnFacebookLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                <Button
+                        android:id="@+id/btnSignWithFacebook"
+                        android:text="@string/sign_in_with_facebook"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_55"
+                        android:textSize="@dimen/sp_14"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/meterial_button_fb"/>
+            </FrameLayout>
         </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"

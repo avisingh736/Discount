@@ -71,6 +71,11 @@ class SignInActivity : AppCompatActivity(),DiscountView, RememberListener {
             mSignInPresenter.setRememberMe(it.isSelected)
         }
 
+        btnSignWithFacebook.setOnClickListener {
+            mSignInPresenter.continueWithFacebook()
+        }
+        mSignInPresenter.initFacebookButton(btnFacebookLogin)
+
         mSignInPresenter.checkRemembered()
 
         val bundle = intent.getBundleExtra(Constants.KEY_BUNDLE_PARAM)
@@ -79,6 +84,11 @@ class SignInActivity : AppCompatActivity(),DiscountView, RememberListener {
                 onErrorOrInvalid(getString(R.string.invalid_session_please_login_again))
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        mSignInPresenter.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onDestroy() {
