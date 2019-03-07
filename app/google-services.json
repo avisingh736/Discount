@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "821308293289",
+    "firebase_url": "https://discount-69aef.firebaseio.com",
+    "project_id": "discount-69aef",
+    "storage_bucket": "discount-69aef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821308293289:android:817283d6958c2deb",
+        "android_client_info": {
+          "package_name": "com.discount"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821308293289-0gdt7ue88cv69t7sl23lts46m0eafdcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.discount",
+            "certificate_hash": "ed092f10c0e932c0f37362aefc1d0799d4bba53c"
+          }
+        },
+        {
+          "client_id": "821308293289-1h8hm5ur00bppiqfmpmikp0trgk3hqrc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtEC4dF-D31MWwku2PGrkg5ZCDVFpVzbY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821308293289-1h8hm5ur00bppiqfmpmikp0trgk3hqrc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "821308293289-h5s6f6sftli9m3nv79ogipfl0qi0v9c5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mindiii.discount"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

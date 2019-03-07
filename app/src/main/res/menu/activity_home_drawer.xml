@@ -32,9 +32,9 @@
                 android:title="@string/subscriptions"/>
 
         <item
-                android:id="@+id/nav_about_discount"
-                android:icon="@drawable/ic_inactive_info_ico"
-                android:title="@string/about_discount"/>
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/inactive_setting_ico"
+                android:title="@string/action_settings"/>
 
         <item
                 android:id="@+id/nav_contact_us"

@@ -5,6 +5,8 @@ import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
+import com.discount.models.Content
+import com.discount.models.ContentResponse
 import com.discount.models.ErrorResponse
 import com.google.gson.Gson
 import okhttp3.MultipartBody
@@ -25,6 +27,7 @@ class ProfileInteractor {
     interface OnProfileUpdateListener{
         fun onError(msg: String)
         fun onSuccess(msg: String)
+        fun onContent(content: Content)
         fun logout()
     }
 
@@ -56,6 +59,37 @@ class ProfileInteractor {
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                 mListener.onError(t.localizedMessage)
+                MyLog.e(TAG,"Error: ",t)
+            }
+        })
+    }
+
+    /**
+     *  This method is not getting called
+     * */
+    fun getContents(mListener: OnProfileUpdateListener) {
+        Discount.getApis().getContents(Discount.getSession().authToken).enqueue(object : Callback<ContentResponse>{
+            override fun onResponse(call: Call<ContentResponse>, response: Response<ContentResponse>) {
+                MyLog.i(TAG,"onResponse ${response.isSuccessful}")
+
+                if (response.code() == 400) {
+                    val mError = Gson().fromJson<ErrorResponse>(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                    if (mError.responseCode == 300) {
+                        return
+                    }
+                }
+
+                if(response.isSuccessful) {
+                    if (response.body()?.status.equals(Constants.KEY_SUCCESS,false)) {
+                        val content: Content = response.body()?.content!!
+                        mListener.onContent(content)
+                    } else {
+                        mListener.onError(response.body()?.message!!)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ContentResponse>, t: Throwable) {
                 MyLog.e(TAG,"Error: ",t)
             }
         })

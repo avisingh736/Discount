@@ -13,9 +13,11 @@ import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
 import com.discount.interactors.ProfileInteractor
+import com.discount.models.Content
 import com.discount.models.UserDetail
 import com.discount.views.DiscountView
 import com.discount.views.ui.activities.ProfileActivity
+import com.discount.views.ui.activities.SettingActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.app_bar_profile.*
 import kotlinx.android.synthetic.main.content_profile.*
@@ -26,10 +28,18 @@ import kotlinx.android.synthetic.main.dialog_change_password.view.*
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
+
+/**
+ * This presenter is used in Setting Activity also
+ * */
 class ProfilePresenter(var mView: DiscountView?, var mInteractor: ProfileInteractor): ProfileInteractor.OnProfileUpdateListener {
     private val TAG = ProfilePresenter::class.java.simpleName
     var dialogView: View? = null
     var mDialog: AlertDialog? = null
+
+    init {
+        //mInteractor.getContents(this)
+    }
 
     fun initViews(profile: ProfileActivity) {
         val prefHelper = PrefHelper.instance
@@ -114,9 +124,16 @@ class ProfilePresenter(var mView: DiscountView?, var mInteractor: ProfileInterac
         mDialog?.dismiss()
         mView?.onErrorOrInvalid(msg)
     }
+
     override fun onSuccess(msg: String) {
         mDialog?.dismiss()
         mView?.onSuccess(msg)
+    }
+
+    override fun onContent(content: Content) {
+        PrefHelper.instance?.savePref(Constants.URL_TERMS,content.termAndCondition)
+        PrefHelper.instance?.savePref(Constants.URL_POLICY,content.policy)
+        PrefHelper.instance?.savePref(Constants.URL_ABOUT,content.about)
     }
 
     fun onDestroy() {

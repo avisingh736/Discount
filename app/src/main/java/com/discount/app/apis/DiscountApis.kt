@@ -25,7 +25,8 @@ interface DiscountApis {
         @Part profileImage: MultipartBody.Part?,
         @Part("device_type") deviceType: RequestBody,
         @Part("social_id") socialId: RequestBody,
-        @Part("social_type") socialType: RequestBody
+        @Part("social_type") socialType: RequestBody,
+        @Part("device_token") deviceToken: RequestBody
     ): Call<AuthResponse>
 
 
@@ -34,7 +35,8 @@ interface DiscountApis {
     fun login(
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("device_type") deviceType: String
+        @Field("device_type") deviceType: String,
+        @Field("device_token") deviceToken: String
     ): Call<AuthResponse>
 
     @FormUrlEncoded

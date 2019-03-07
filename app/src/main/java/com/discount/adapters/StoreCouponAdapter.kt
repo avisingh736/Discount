@@ -53,7 +53,7 @@ class StoreCouponAdapter(var mContext: Context, var coupons: MutableList<Coupon>
 
         override fun onClick(v: View?) {
             val bundle = Bundle()
-            bundle.putSerializable(Constants.KEY_COUPON_EXTRA,coupons[adapterPosition])
+            bundle.putSerializable(Constants.KEY_COUPON_ID_EXTRA,coupons[adapterPosition].couponId)
             (mContext as StoreDetailActivity).navigateTo(CouponDetailActivity::class.java,bundle)
         }
     }

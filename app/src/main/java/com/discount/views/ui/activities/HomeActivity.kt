@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.internal.NavigationMenuView
-import android.support.design.widget.AppBarLayout
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
@@ -12,7 +11,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.discount.R
@@ -84,6 +82,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         mHomePresenter.requestForLocationAccess()
 
+        val mBundle = intent.getBundleExtra(Constants.KEY_BUNDLE_PARAM)
+        if (mBundle != null) {
+            val bundle = Bundle()
+            bundle.putSerializable(Constants.KEY_COUPON_ID_EXTRA,mBundle.getString(Constants.KEY_COUPON_ID_EXTRA))
+            navigateTo(CouponDetailActivity::class.java,bundle)
+        }
+
         goForCoupon.setOnClickListener { navigateTo(CouponActivity::class.java) }
 
         rvHomeCouponsHere.layoutManager = GridLayoutManager(this, 2)
@@ -116,7 +121,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_store -> navigateTo(StoreActivity::class.java)
             R.id.nav_my_account -> navigateTo(ProfileActivity::class.java)
             R.id.nav_subscription -> navigateTo(SubscriptionActivity::class.java)
-            R.id.nav_about_discount -> navigateTo(AboutUsActivity::class.java)
+            R.id.nav_settings -> navigateTo(SettingActivity::class.java)
             R.id.nav_contact_us -> navigateTo(ContactUsActivity::class.java)
         }
 

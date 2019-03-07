@@ -11,5 +11,8 @@ data class AuthResponse(
     @SerializedName("status") var status: String,
     @SerializedName("message") var message: String,
     @SerializedName("messageCode") var messageCode: String,
+    @SerializedName("term") var termsUrl: String,
+    @SerializedName("policy") var policyUrl: String,
+    @SerializedName("about") var aboutUrl: String,
     @SerializedName("userDetail") var userDetail: UserDetail
 )

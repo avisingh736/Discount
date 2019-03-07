@@ -1,9 +1,8 @@
 package com.discount.views.ui.activities
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -11,37 +10,37 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.discount.R
 import com.discount.app.config.Constants
-import com.discount.models.Content
-import com.discount.presenters.AboutUsPresenter
-import com.discount.views.DiscountView
+import com.discount.app.prefs.PrefHelper
 import kotlinx.android.synthetic.main.activity_about_us.*
 
-class AboutUsActivity : AppCompatActivity(), DiscountView {
+class WebActivity : AppCompatActivity() {
 
-    val mPresenter = AboutUsPresenter(this)
-
-    override fun onErrorOrInvalid(msg: String) {
-        //TODO("not implemented")
-    }
-
-    override fun onSuccess(msg: String) {
-        //TODO("not implemented")
-    }
-
-    override fun progress(flag: Boolean) {
+    private fun progress(flag: Boolean) {
         progressBar.visibility = if (flag) View.VISIBLE else View.GONE
-    }
-
-    override fun <T> navigateTo(clazz: Class<T>, bundle: Bundle?) {
-        val mIntent = Intent(this,clazz)
-        if (bundle != null) mIntent.putExtra(Constants.KEY_BUNDLE_PARAM,bundle)
-        startActivity(mIntent)
-        overridePendingTransition(R.anim.init_to_left,R.anim.left_to_init)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
+
+        val mBundle = intent.getBundleExtra(Constants.KEY_BUNDLE_PARAM)
+        var mAboutUsUrl =  Constants.DOMAIN
+        if (mBundle != null) {
+            when{
+                mBundle.getString(Constants.KEY_TO_WHERE) == Constants.URL_ABOUT -> {
+                    tvMainTitle.text = getString(R.string.about_us)
+                    mAboutUsUrl = PrefHelper.instance?.getPref(Constants.URL_ABOUT,Constants.DOMAIN)!!
+                }
+                mBundle.getString(Constants.KEY_TO_WHERE) == Constants.URL_TERMS -> {
+                    tvMainTitle.text = getString(R.string.terms_and_conditions)
+                    mAboutUsUrl = PrefHelper.instance?.getPref(Constants.URL_TERMS,Constants.DOMAIN)!!
+                }
+                mBundle.getString(Constants.KEY_TO_WHERE) == Constants.URL_POLICY -> {
+                    tvMainTitle.text = getString(R.string.privacy_policy)
+                    mAboutUsUrl = PrefHelper.instance?.getPref(Constants.URL_POLICY,Constants.DOMAIN)!!
+                }
+            }
+        }
 
         ivGoToBack.setOnClickListener { finish() }
         mWebView.webChromeClient = WebChromeClient()
@@ -60,12 +59,7 @@ class AboutUsActivity : AppCompatActivity(), DiscountView {
         mWebView.isHorizontalScrollBarEnabled = false
         mWebView.isVerticalScrollBarEnabled = false
         mWebView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        mWebView.loadUrl("https://discoount.com/admin/terms")
-        mPresenter.getContents()
-    }
-
-    fun onContent(content: Content) {
-
+        mWebView.loadUrl(mAboutUsUrl)
     }
 
     override fun finish() {

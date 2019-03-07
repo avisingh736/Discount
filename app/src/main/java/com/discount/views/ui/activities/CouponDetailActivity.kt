@@ -52,8 +52,8 @@ class CouponDetailActivity : AppCompatActivity(),DiscountView {
         ivGoToBack.setOnClickListener { finish() }
         val bundle = intent.getBundleExtra(Constants.KEY_BUNDLE_PARAM)
         if (bundle != null) {
-            val coupon = bundle.getSerializable(Constants.KEY_COUPON_EXTRA) as Coupon
-            mPresenter.getCouponInfo(coupon.couponId)
+            val couponId = bundle.getString(Constants.KEY_COUPON_ID_EXTRA)!!
+            mPresenter.getCouponInfo(couponId)
         }
 
         btnRedeem.setOnClickListener {

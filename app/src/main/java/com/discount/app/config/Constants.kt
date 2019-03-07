@@ -15,6 +15,7 @@ class Constants {
         /**
          * Urls below
          * */
+        const val DOMAIN = "https://discoount.com"
         const val BASE_URL_DEVELOPMENT = "http://dev.mindiii.com/discount/api_v1/"
         const val BASE_URL = "https://discoount.com/api_v1/"
         const val AUTH_TOKEN = "Auth-Token"
@@ -54,10 +55,12 @@ class Constants {
         const val KEY_STORE_EXTRA = "store_extra"
         const val KEY_CATEGORY_EXTRA = "category_extra"
         const val KEY_FROM_WHERE = "from_where"
+        const val KEY_TO_WHERE = "to_where"
         const val KEY_FROM_CATEGORY = "from_coupon_category"
         const val KEY_FROM_COUPON_INFO = "from_coupon_info"
         const val KEY_FROM_STORE_LIST = "from_store_list"
         const val KEY_INVALID_SESSION = "invalid_session"
+        const val KEY_COUPON_ID_EXTRA = "coupon_id"
 
         /**
          *  Preferences constants
@@ -68,6 +71,10 @@ class Constants {
         const val USER_DETAILS = "user_details"
         const val EMAIL = "email"
         const val PASSWORD = "password"
+        const val TOKEN = "token"
+        const val URL_TERMS = "terms";
+        const val URL_POLICY = "policy"
+        const val URL_ABOUT = "about"
 
         /**
          *  Request code constants

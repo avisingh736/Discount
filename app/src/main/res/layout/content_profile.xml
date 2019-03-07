@@ -297,6 +297,7 @@
         <Button
                 android:id="@+id/btnLogout"
                 android:text="@string/logout"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:layout_marginTop="@dimen/dp_20"

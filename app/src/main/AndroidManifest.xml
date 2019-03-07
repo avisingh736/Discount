@@ -19,10 +19,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".views.ui.activities.SettingActivity">
+        </activity>
 
         <uses-library
                 android:name="org.apache.http.legacy"
-                android:required="false" />
+                android:required="false"/>
 
         <activity
                 android:name=".views.ui.activities.SplashActivity"
@@ -62,7 +64,7 @@
         <activity android:name=".views.ui.activities.StoreActivity"/>
         <activity android:name=".views.ui.activities.StoreDetailActivity"/>
         <activity android:name=".views.ui.activities.SubscriptionActivity"/>
-        <activity android:name=".views.ui.activities.AboutUsActivity"/>
+        <activity android:name=".views.ui.activities.WebActivity"/>
         <activity android:name=".views.ui.activities.ContactUsActivity"/>
         <activity
                 android:name=".views.ui.activities.EditProfileActivity"
@@ -70,20 +72,28 @@
         <activity android:name=".views.ui.activities.CountryActivity"/>
         <activity android:name=".views.ui.activities.SubscriptionDetailActivity">
         </activity>
-        <activity android:name="com.facebook.FacebookActivity"
-                  android:configChanges=
-                          "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-                  android:label="@string/app_name" />
+        <activity
+                android:name="com.facebook.FacebookActivity"
+                android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                android:label="@string/app_name"/>
         <activity
                 android:name="com.facebook.CustomTabActivity"
                 android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="@string/fb_login_protocol_scheme" />
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
+
+        <service android:name=".app.services.DiscountMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
         <provider
                 android:name=".app.providers.DiscountFileProvider"
@@ -104,9 +114,15 @@
         <meta-data
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version"/>
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-                   android:value="@string/facebook_app_id"/>
-
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/facebook_app_id"/>
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/ic_stat_discount"/>
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_color"
+                android:resource="@color/colorAccent"/>
     </application>
 
 </manifest>

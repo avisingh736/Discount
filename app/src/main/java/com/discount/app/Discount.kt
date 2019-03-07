@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.TypedValue
+import android.widget.Toast
 import com.crashlytics.android.Crashlytics
 import com.discount.R
 import com.discount.app.apis.DiscountApis
@@ -16,10 +17,14 @@ import com.discount.app.config.Constants
 import com.discount.app.config.Constants.Companion.BASE_URL
 import com.discount.app.config.Constants.Companion.BASE_URL_DEVELOPMENT
 import com.discount.app.prefs.PrefHelper
+import com.discount.app.utils.MyLog
 import com.discount.models.UserDetail
 import com.discount.views.ui.activities.SignInActivity
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.FirebaseApp
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.Gson
 import io.fabric.sdk.android.Fabric
 import okhttp3.OkHttpClient
@@ -33,7 +38,8 @@ import java.util.concurrent.TimeUnit
  * At: Mindiii Systems Pvt. Ltd.
  * Mail: avinash.mindiii@gmail.com
  */
-class Discount: Application() {
+    class Discount: Application() {
+    private val TAG: String = Discount::class.java.simpleName
 
     init {
         instance = this
@@ -45,6 +51,17 @@ class Discount: Application() {
         PrefHelper.init(this)
         FacebookSdk.sdkInitialize(baseContext)
         AppEventsLogger.activateApp(this)
+        FirebaseApp.initializeApp(this)
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    if (task.exception != null) MyLog.e(TAG, "getInstanceId failed", task.exception!!)
+                    return@OnCompleteListener
+                }
+
+            val mToken = task.result?.token
+            MyLog.i(TAG,  "Token: $mToken")
+            PrefHelper.instance?.savePref(Constants.TOKEN,mToken)
+            })
     }
 
     companion object {

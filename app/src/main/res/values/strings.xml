@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Discount</string>
 
-
     <string name="home">Home</string>
     <string name="coupon">Coupon</string>
     <string name="coupons">Coupons</string>
@@ -55,7 +54,9 @@
     <string name="create_your_account">Create your account</string>
     <string name="send">Send</string>
     <string name="forgot_your_password_">Forgot your password?</string>
-    <string name="please_enter_your_registered_email_address_below_to_reset_your_password">Please enter your registered email address below to reset your password</string>
+    <string name="please_enter_your_registered_email_address_below_to_reset_your_password">Please enter your registered
+        email address below to reset your password
+    </string>
 
     <string name="get_your_coupon">Get your coupon</string>
     <string name="free">free</string>
@@ -75,6 +76,7 @@
     <string name="add">Add</string>
     <string name="coupon_info">Coupon Info</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="privacy_policy">Privacy Policy</string>
     <string name="voucher_code_">Voucher code:</string>
     <string name="valid_till_">Valid till:</string>
     <string name="male">Male</string>
@@ -82,8 +84,10 @@
     <string name="purchase_date">Purchase Date</string>
     <string name="ends_in">Ends In</string>
     <string name="next_bill_date">Next Bill Date</string>
-    <string name="coupons_can_be_redeemed">Coupons  can be redeemed</string>
+    <string name="coupons_can_be_redeemed">Coupons can be redeemed</string>
     <string name="stop_recurring">Stop Recurring</string>
+    <string name="basic_settings">Basic Settings</string>
+    <string name="support">Support</string>
 
     <!-- Alerts on the app-->
     <string name="please_enter_email_id">Please enter email id</string>
@@ -111,8 +115,8 @@
     <string name="action_settings">Settings</string>
     <string name="terms_and_conditions_apply_">T&amp;C Apply*</string>
     <string name="are_you_student_">Are you student?</string>
-    <string name="view_more">View  More</string>
-    <string name="know_more">Know  More</string>
+    <string name="view_more">View More</string>
+    <string name="know_more">Know More</string>
     <string name="please_select_university">Please select university</string>
     <string name="please_enter_student_id">Please enter student id</string>
     <string name="something_went_wrong">Something went wrong…</string>
@@ -126,7 +130,13 @@
     <string name="l1">What is Lorem Ipsum?</string>
     <string name="l2">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="l3">OFF60</string>
-    <string name="l4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="l4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+        the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.
+    </string>
     <string name="hello">Hello</string>
     <string name="world">World</string>
     <string name="devs_mail">devs@mail.com</string>
@@ -142,9 +152,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <!-- API keys-->
-    <string name="google_maps_api_kay">AIzaSyBK-w5d0vnl3phAmvwO3R2ZDmT6sX3Qsso</string>
+    <string name="google_maps_api_kay">AIzaSyAuOPljTSFYhL3J3U3i0S-AiCz3OabNSSg</string>
     <string name="facebook_app_id">1952618965034793</string>
     <string name="fb_login_protocol_scheme">fb1952618965034793</string>
 

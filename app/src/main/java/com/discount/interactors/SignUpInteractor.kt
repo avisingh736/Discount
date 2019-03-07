@@ -5,6 +5,7 @@ import com.discount.app.config.Constants
 import com.discount.app.prefs.PrefHelper
 import com.discount.app.utils.MyLog
 import com.discount.models.AuthResponse
+import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -29,7 +30,7 @@ class SignUpInteractor {
                  deviceType: RequestBody, socialId: RequestBody, socialType: RequestBody,
                  mListener: OnRegistrationFinishedListener) {
         Discount.getApis().register(firstName,lastName,email,password,
-            cPassword,profileImage,deviceType,socialId,socialType).enqueue(object : Callback<AuthResponse>{
+            cPassword,profileImage,deviceType,socialId,socialType,RequestBody.create(MediaType.parse("text/plain"),PrefHelper.instance?.getPref(Constants.TOKEN,"")!!)).enqueue(object : Callback<AuthResponse>{
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 MyLog.i(TAG,"msg ${response.body()?.message}")
                 if (response.isSuccessful) {
@@ -39,6 +40,9 @@ class SignUpInteractor {
                             prefHelper?.run {
                                 savePref(Constants.IS_USER_LOGGED_IN,true)
                                 savePref(Constants.USER_DETAILS,PrefHelper.encodeProfile(userDetail))
+                                savePref(Constants.URL_ABOUT,response.body()?.aboutUrl)
+                                savePref(Constants.URL_POLICY,response.body()?.policyUrl)
+                                savePref(Constants.URL_TERMS,response.body()?.termsUrl)
                             }
                             mListener.onSuccess(message)
                         } else {
